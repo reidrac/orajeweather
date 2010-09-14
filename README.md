@@ -1,4 +1,5 @@
-= Oraje Weather = 
+Oraje Weather 
+=============
 
 This is a Gnome applet to view Yahoo! Weather forecasts.
 
@@ -8,7 +9,8 @@ promoted by Yahoo! in any way.
 In case you're wondering, "Oraje" is a Spanish word that comes from
 lating and means 'Weather'.
 
-== Install ==
+Install
+-------
 
 This package requires:
 
@@ -19,11 +21,13 @@ This package requires:
 
 $ sudo python setup.py install
 
-== Author ==
+Author
+------
 
 Juan J. Martinez <jjm@usebox.net>
 
-== License ==
+License
+-------
 
 This program is free software under the terms of GPL version 3.
 
