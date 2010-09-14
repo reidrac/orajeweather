@@ -6,8 +6,7 @@ This is a Gnome applet to view Yahoo! Weather forecasts.
 This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
 
-In case you're wondering, "Oraje" is a Spanish word that comes from
-lating and means "Weather".
+In case you're wondering, "Oraje" is a Spanish word that means "Weather".
 
 Install
 -------
