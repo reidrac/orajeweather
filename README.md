@@ -7,7 +7,7 @@ This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
 
 In case you're wondering, "Oraje" is a Spanish word that comes from
-lating and means 'Weather'.
+lating and means "Weather".
 
 Install
 -------
