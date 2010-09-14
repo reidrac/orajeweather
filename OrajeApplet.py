@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Oraje Applet - Yahoo! Weather Applet for Gnome
+# Oraje Applet - Another Weather Applet for Gnome
 # Copyright (C) 2010 Juan J. Martinez <jjm@usebox.net>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""A Yahoo! Weather Applet for Gnome.
+"""Another Weather Applet for Gnome.
 
 This is a Gnome applet to view Yahoo! Weather forecasts.
 
