@@ -12,6 +12,6 @@ setup(name='OrajeApplet',
 	data_files=[('lib/bonobo/servers/', ['OrajeApplet.server']),
 		('share/gnome-2.0/ui/', ['OrajeApplet.xml']),
 		('lib/OrajeApplet/', ['theme.json']),
-		('share/doc/OrajeApplet/', ['README', 'CHANGES', 'COPYING'])],
+		('share/doc/OrajeApplet/', ['README.md', 'CHANGES', 'COPYING'])],
 	)
 
