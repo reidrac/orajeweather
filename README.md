@@ -20,16 +20,12 @@ This package requires:
 
 $ sudo python setup.py install
 
-Author
-------
-
-Juan J. Martinez <jjm@usebox.net>
 
 License
 -------
 
+Copyright (C) 2010 Juan J. Martinez <jjm@usebox.net>
 This program is free software under the terms of GPL version 3.
 
 Please check COPYING file for further details.
-
 
