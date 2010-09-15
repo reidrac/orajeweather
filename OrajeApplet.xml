@@ -1,12 +1,11 @@
 <Root>
 	<popups>
-		<popup name="Popup">
-			<menuitem name="MenuDetails" verb="Details" _label="_Details"/>
-			<menuitem name="MenuUpdate" verb="Update" _label="_Update" pixtype="stock" pixname="gtk-refresh"/>
+		<popup name="button3">
+			<menuitem name="Details" verb="Details" _label="_Details"/>
+			<menuitem name="Update" verb="Update" _label="_Update" pixtype="stock" pixname="gtk-refresh"/>
 			<separator/>
-			<menuitem name="MenuPreferences" verb="Props" _label="_Preferences" pixtype="stock" pixname="gtk-properties"/>
-			<!--<menuitem name="MenuHelp" verb="Help" _label="_Help" pixtype="stock" pixname="gtk-help"/>-->
-			<menuitem name="MenuAbout" verb="About" _label="_About" pixtype="stock" pixname="gtk-about"/>
+			<menuitem name="Prefs" verb="Prefs" _label="_Preferences" pixtype="stock" pixname="gtk-properties"/>
+			<menuitem name="About" verb="About" _label="_About" pixtype="stock" pixname="gtk-about"/>
 		</popup>
 	</popups>
 </Root>
