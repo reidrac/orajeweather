@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 #
 # Oraje Applet - Another Weather Applet for Gnome
 # Copyright (C) 2010 Juan J. Martinez <jjm@usebox.net>
@@ -78,12 +79,19 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		self.status = None
 		self.weather = None
+		self.timeout = None
 
 		self.conf_file = None
 		self.conf = None
 		self.theme = None
 
 		self.applet = applet
+		self.applet.setup_menu_from_file (
+			None, 'OrajeApplet.xml',
+			None, [('Details', self.on_details), 
+					('Update', self.on_update),
+					('Preferences', self.on_preferences),
+					('About', self.on_about)])
 
 		(self.conf_file, self.conf) = self.load_configuration()
 		logging.debug(self.conf)
@@ -91,22 +99,25 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.theme = self.load_theme(self.conf['theme'])
 		if not self.theme:
 			exit(1)
-		
+
+		# setup the size of the applet before loading a image
 		self.size = self.applet.get_size()
 		self.label = gtk.Label()
 
-		self.update_rss()
+		# show something, in case the RSS it's slow
+		self.set_status('loading')
 
 		box = gtk.HBox()
 		box.add(self.image)
 		box.add(self.label)
 		self.applet.add(box)
-		self.applet.connect('button-press-event', self.button_press)
 		self.applet.connect('change-size', self.change_size)
 		self.applet.connect('change-background', self.change_background)
 		self.applet.show_all()
 
-		gobject.timeout_add(int(self.conf['update'])*60*1000,
+		self.update_rss()
+
+		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
 			update_rss_callback, self)
 
 	def update_rss(self):
@@ -242,23 +253,27 @@ class OrajeApplet(gnomeapplet.Applet):
 			logging.error('Unknown status %s, ignored' % status)
 			return
 
-		temp = ' %s<sup><small>o</small></sup>%c' % (
-			self.weather['condition']['temp'],
-			self.weather['units']['temperature']
-		)
-		self.label.set_markup(temp)
+		if self.weather:
+			temp = ' %s<sup><small>o</small></sup>%c' % (
+				self.weather['condition']['temp'],
+				self.weather['units']['temperature']
+			)
+			self.label.set_markup(temp)
 
-		# prettify
-		if not desc:
+			# prettify
+			if not desc:
 				desc = self.status
-		desc = desc.title()
+			desc = desc.title()
 
-		tip = '%s (%s)\n<b>%s</b>,%s' % (
-			self.weather['location']['city'], 
-			self.weather['location']['country'],
-			desc,
-			temp
-		)
+			tip = '%s (%s)\n<b>%s</b>,%s' % (
+				self.weather['location']['city'], 
+				self.weather['location']['country'],
+				desc,
+				temp
+			)
+			self.label.set_tooltip_markup(tip)
+		else:
+			tip = '...'
 
 		prev = None
 		if self.image:
@@ -270,7 +285,6 @@ class OrajeApplet(gnomeapplet.Applet):
 					self.size, prev)
 
 		self.image.set_tooltip_markup(tip)
-		self.label.set_tooltip_markup(tip)
 
 
 	def load_image(self, file, size, prev = None):
@@ -296,17 +310,6 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		return image
 
-	# when the applet is clicked
-	def button_press(self, button, event):
-
-		# left mouse button
-		if event.button == 1:
-			print "but 1"
-
-		# right mouse button
-		elif event.button == 3:
-			print "but 2"
-
 	def change_size(self, applet, size):
 		"""Change the size of the image if the panel size changes.
 		"""
@@ -326,6 +329,47 @@ class OrajeApplet(gnomeapplet.Applet):
 		elif type == gnomeapplet.PIXMAP_BACKGROUND:
 			applet.get_style().bg_pixmap[gtk.STATE_NORMAL] = pixmap
 
+	def on_details(self, component, verb):
+		logging.debug('Menu on_details')
+
+	def on_update(self, component, verb):
+		"""Update the RSS on demand.
+
+		Remove the existing timeout before updating the RSS to avoid
+		problems and restore it back after the update.
+		"""
+		logging.debug('Menu on_update')
+		gobject.source_remove(self.timeout)
+		self.update_rss()
+		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
+			update_rss_callback, self)
+
+	def on_preferences(self, component, verb):
+		logging.debug('Menu on_preferences')
+
+	def on_about(self, component, verb):
+		"""Show an About dialog.
+
+		Use the 'storm' icon from current theme.
+		"""
+		logging.debug('Menu on_about')
+
+		icon = '%s%s' % (self.theme['base'], self.theme['status']['storm'])
+
+		about = gtk.AboutDialog()
+		info = {
+			'program-name': self.PACKAGE,
+			'version': self.VERSION,
+			'logo': gtk.gdk.pixbuf_new_from_file_at_size(icon, 96, 96),
+			'comments': 'Another weather applet for Gnome',
+			'copyright': u'Copyright © 2010 Juan J. Martínez'
+		}
+		for i, v in info.items():
+			about.set_property(i, v)
+		about.set_icon_from_file(icon)
+		about.connect('response', lambda self, *args: self.destroy())
+		about.show_all()
+
 def OrajeFactory(applet, iid):
 	"""Function to register OrajeApplet class.
 	"""
@@ -334,7 +378,7 @@ def OrajeFactory(applet, iid):
 	return True
 
 def update_rss_callback(data):
-	"""Function to be executed perioadically.
+	"""Function to be executed periodically.
 
 	The argument it's a reference to the OrajeApplet, so update_rss()
 	method is called to retrieve the RSS.
@@ -366,7 +410,8 @@ if __name__ == '__main__':
 	logging.getLogger().setLevel(logging.ERROR)
 
 	try:
-		(opts, args) = getopt(sys.argv[1:], 'hvdw', ['help', 'version', 'debug', 'window'])
+		(opts, args) = getopt(sys.argv[1:], 'hvdw', 
+			['help', 'version', 'debug', 'window'])
 	except Exception as e:
 		opts = []
 		args = sys.argv[1:]
