@@ -90,7 +90,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			None, 'OrajeApplet.xml',
 			None, [('Details', self.on_details), 
 					('Update', self.on_update),
-					('Preferences', self.on_preferences),
+					('Prefs', self.on_preferences),
 					('About', self.on_about)])
 
 		(self.conf_file, self.conf) = self.load_configuration()
@@ -346,6 +346,28 @@ class OrajeApplet(gnomeapplet.Applet):
 
 	def on_preferences(self, component, verb):
 		logging.debug('Menu on_preferences')
+		ui = gtk.Builder()
+		ui.add_from_file('%s/lib/OrajeApplet/prefs.ui' % sys.prefix)
+		dialog = ui.get_object('Preferences')
+		dialog.set_title(self.PACKAGE + ' Preferences')
+
+		woeid = ui.get_object('woeid')
+		woeid.set_text(self.conf['location'])
+
+		interval = ui.get_object('interval')
+		interval.set_value(float(self.conf['update']))
+
+  		units = ui.get_object('units')
+		units.append_text('Celsius')
+		units.append_text('Farenheit')
+		if self.conf['units'] == 'c':
+			units.set_active(0)
+		else:
+			units.set_active(1)
+
+		dialog.show_all()
+		dialog.run()
+		dialog.destroy()
 
 	def on_about(self, component, verb):
 		"""Show an About dialog.
