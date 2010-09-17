@@ -86,6 +86,9 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.conf = None
 		self.theme = None
 
+		self.prefs = None
+		self.about = None
+
 		self.applet = applet
 		self.applet.setup_menu_from_file (
 			None, 'OrajeApplet.xml',
@@ -387,6 +390,10 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		It updates the configuration on the fly, and saves it on close.
 		"""
+		if self.prefs:
+			return
+		self.prefs = True
+
 		logging.debug('Menu on_preferences')
 		ui = gtk.Builder()
 		ui.add_from_file('%s/lib/OrajeApplet/prefs.ui' % sys.prefix)
@@ -424,6 +431,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		dialog.destroy()
 		logging.debug(self.conf)
 		self.save_configuration()
+		self.prefs = None
 
 	def on_woeid_change(self, entry, event, label):
 		"""Manage WEID change.
@@ -507,6 +515,10 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		Use the 'storm' icon from current theme.
 		"""
+		if self.about:
+			return
+		self.about = True
+
 		logging.debug('Menu on_about')
 
 		icon = '%s%s' % (self.theme['base'], self.theme['status']['storm'])
@@ -524,6 +536,9 @@ class OrajeApplet(gnomeapplet.Applet):
 		about.set_icon_from_file(icon)
 		about.connect('response', lambda self, *args: self.destroy())
 		about.show_all()
+		about.run()
+		about.destroy()
+		self.about = None
 
 def OrajeFactory(applet, iid):
 	"""Function to register OrajeApplet class.
