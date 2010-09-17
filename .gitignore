@@ -4,3 +4,5 @@ MANIFEST
 build/
 *.log
 data/
+dist/
+
