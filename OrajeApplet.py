@@ -80,6 +80,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.status = None
 		self.weather = None
 		self.timeout = None
+		self.error = True
 
 		self.conf_file = None
 		self.conf = None
@@ -128,10 +129,9 @@ class OrajeApplet(gnomeapplet.Applet):
 
 	def _update_rss(self, w, c):
 
-		try:
-			rss = urllib.urlopen(self.YAHOO_API % (w, c))
-		except Exception as e:
-			logging.error('Error downloading the RSS: %s' % e)
+		rss = self._get_rss(self.YAHOO_API % (w, c))
+		if rss is None:
+			self.error = True
 			return
 
 		try:
@@ -144,6 +144,17 @@ class OrajeApplet(gnomeapplet.Applet):
 			logging.error('Error setting new status: %s' % e)
 
 		rss = None
+		self.error = False
+
+	def _get_rss(self, url):
+
+		try:
+			rss = urllib.urlopen(url)
+		except Exception as e:
+			logging.error('Error downloading the RSS: %s' % e)
+			return None
+
+		return rss
 
 	def dom_to_weather(self, dom):
 		"""Translates from Yahoo! Weather XML into Oraje weather dict.
@@ -213,6 +224,33 @@ class OrajeApplet(gnomeapplet.Applet):
 			conf_fd.close()
 
 		return (conf_file, conf)
+
+	def save_configuration(self):
+		"""Save current configuration.
+
+		A call to load_configuration it's needed before calling this one.
+		"""
+
+		if self.conf_file is None:
+			logging.error('Trying to save the conf before loading it first')
+			return
+
+		try:
+			conf_fd = open(self.conf_file, 'w')
+		except:
+			conf_fd = None
+			logging.warning('Failed to save %s' % conf_file)
+			return
+		
+		if conf_fd:
+			try:
+				conf = json.dump(self.conf, conf_fd)
+			except Exception as e:
+				logging.error('Error while saving in %s: %s' % 
+					(self.conf_file, e))
+			conf_fd.close()
+		logging.debug("Configuration saved")
+
 
 	def load_theme(self, theme_file):
 		"""Loads a theme in JSON format.
@@ -345,6 +383,10 @@ class OrajeApplet(gnomeapplet.Applet):
 			update_rss_callback, self)
 
 	def on_preferences(self, component, verb):
+		"""Preferences dialog.
+
+		It updates the configuration on the fly, and saves it on close.
+		"""
 		logging.debug('Menu on_preferences')
 		ui = gtk.Builder()
 		ui.add_from_file('%s/lib/OrajeApplet/prefs.ui' % sys.prefix)
@@ -354,8 +396,19 @@ class OrajeApplet(gnomeapplet.Applet):
 		woeid = ui.get_object('woeid')
 		woeid.set_text(self.conf['location'])
 
+		location = ui.get_object('location')
+		if self.error or self.weather is None:
+			location.set_markup('')
+		else:
+			location.set_markup('<small><i>%s (%s)</i></small>' % 
+				(self.weather['location']['city'], 
+				self.weather['location']['country']))
+
+		woeid.connect('focus-out-event', self.on_woeid_change, location)
+
 		interval = ui.get_object('interval')
 		interval.set_value(float(self.conf['update']))
+		interval.connect('focus-out-event', self.on_interval_change)
 
   		units = ui.get_object('units')
 		units.append_text('Celsius')
@@ -364,10 +417,90 @@ class OrajeApplet(gnomeapplet.Applet):
 			units.set_active(0)
 		else:
 			units.set_active(1)
+		units.connect('changed', self.on_units_change)
 
 		dialog.show_all()
 		dialog.run()
 		dialog.destroy()
+		logging.debug(self.conf)
+		self.save_configuration()
+
+	def on_woeid_change(self, entry, event, label):
+		"""Manage WEID change.
+
+		Actually there's no way of looking for a location based on
+		its name (city, region, country), so at least make it easy
+		for the user to check the provided OID it's valid.
+
+		The WOEID is checked before accepting it.
+		"""
+		logging.debug('Preferences, on_woeid_change')
+		woeid = entry.get_text()
+		if woeid != self.conf['location']:
+			logging.debug('woeid changed, checking')
+			label.set_markup('<small><i>Checking...</i></small>')
+
+			rss = self._get_rss(self.YAHOO_API % (woeid, self.conf['units']))
+			if rss is None:
+				logging.warning('Failed to get the RSS, woeid %s' % woeid)
+				label.set_markup('<small><b>Error retrieving location</b></small>')
+				return
+
+			try:
+				weather = self.dom_to_weather(minidom.parse(rss))
+			except:
+				logging.warning('Failed to parse the RSS, woeid %s' % woeid)
+				label.set_markup('<small><b>Error processing the location</b></small>')
+				return
+
+			label.set_markup('<small><i>%s (%s)</i></small>' % 
+				(weather['location']['city'], 
+				weather['location']['country']))
+
+			self.weather = weather
+			self.conf['location'] = woeid
+			self.set_status(self.theme['conditions'][self.weather['condition']['code']]['status'],
+				self.weather['condition']['text'])
+		else:
+			# in case there was a previous error, don't confuse
+			# the user if he puts the old WOID back
+			label.set_markup('<small><i>%s (%s)</i></small>' % 
+				(self.weather['location']['city'], 
+				self.weather['location']['country']))
+
+	def on_interval_change(self, spin, event):
+		"""Manage update interval change.
+		"""
+		logging.debug('Preferences, on_interval_change')
+		interval = spin.get_text()
+		if interval != self.conf['update']:
+			logging.debug('interval changed')
+			self.conf['update'] = interval
+			gobject.source_remove(self.timeout)
+			self.timeout = gobject.timeout_add(
+				int(self.conf['update'])*60*1000, update_rss_callback, self)
+
+	def on_units_change(self, combo):
+		"""Manage units change.
+
+		Yahoo! Weather uses metric units when Celsius data is requested,
+		so we only have to deal with Celsius and Farenheit.
+
+		FIXME: use Farenheit and make the conversion internally.
+		"""
+		logging.debug('Preferences, on_units_change')
+		text = combo.get_active_text()
+		# FIXME: we shouldn't check the text
+		if text == 'Celsius':
+			units = 'c'
+		else:
+			units = 'f'
+		if units != self.conf['units']:
+			logging.debug('units changed')
+			self.conf['units'] = units
+			# FIXME: not needed if we were using one type of unit
+			# internally and converting it before showing it to the user
+			self.update_rss()
 
 	def on_about(self, component, verb):
 		"""Show an About dialog.
