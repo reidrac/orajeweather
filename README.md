@@ -8,6 +8,7 @@ promoted by Yahoo! in any way.
 
 In case you're wondering, "Oraje" is a Spanish word that means "Weather".
 
+
 Install
 -------
 
@@ -21,6 +22,20 @@ This package requires:
 $ sudo python setup.py install
 
 
+WOEID
+-----
+
+Yahoo! API doesn't provide a way to find a location, so you have to
+browse Yahoo Weather (http://weather.yahoo.com/), find your location
+and get the number at the end of the URL. That's your WOEID.
+
+For example:
+
+http://weather.yahoo.com/england/berkshire/reading-32997/
+
+The WOEID for Reading (UK) is 32997.
+
+
 License
 -------
 
@@ -28,4 +43,5 @@ Copyright (C) 2010 Juan J. Martinez <jjm@usebox.net>
 
 This program is free software under the terms of GPL version 3.
 Please check COPYING file for further details.
+
 
