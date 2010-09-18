@@ -88,6 +88,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		self.prefs = None
 		self.about = None
+		self.details = None
 
 		self.applet = applet
 		self.applet.setup_menu_from_file (
@@ -117,6 +118,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.applet.add(box)
 		self.applet.connect('change-size', self.change_size)
 		self.applet.connect('change-background', self.change_background)
+		self.applet.connect('button-press-event', self.button_press)
 		self.applet.show_all()
 
 		self.update_rss()
@@ -159,6 +161,33 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		return rss
 
+	def _translate_wind(self, angle):
+		table = [
+			[378.75, 11.25, 'N'],
+			[11.25, 33.75, 'NNE'],
+			[33.75, 56.25, 'NE'],
+			[56.25, 78.75, 'ENE'],
+			[78.75, 101.25, 'E'],
+			[101.25, 123.75, 'ESE'],
+			[123.75, 146.25, 'SE'],
+			[146.25, 168.75, 'SSE'],
+			[168.75, 191.25, 'S'],
+			[191.25, 213.75, 'SSW'],
+			[213.75, 236.25, 'SW'],
+			[236.25, 258.75, 'WSW'],
+			[258.75, 281.25, 'W'],
+			[281.25, 303.75, 'WNW'],
+			[303.75, 326.25, 'NW'],
+			[326.25, 348.75, 'NNW']
+		]
+
+		angle = int(angle)
+		for i in table:
+			if angle >= i[0] and angle < i[1]:
+				return i[2]
+
+		return '?'
+
 	def dom_to_weather(self, dom):
 		"""Translates from Yahoo! Weather XML into Oraje weather dict.
 		"""
@@ -172,7 +201,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			wind = [ 'chill', 'direction', 'speed' ],
 			atmosphere = [ 'humidity', 'visibility', 'pressure'
 				,'rising'],
-			astronomy = [ 'surise', 'sunset'], 
+			astronomy = [ 'sunrise', 'sunset'], 
 			condition = [ 'text', 'code', 'temp', 'date']
 		)
 
@@ -370,8 +399,12 @@ class OrajeApplet(gnomeapplet.Applet):
 		elif type == gnomeapplet.PIXMAP_BACKGROUND:
 			applet.get_style().bg_pixmap[gtk.STATE_NORMAL] = pixmap
 
-	def on_details(self, component, verb):
-		logging.debug('Menu on_details')
+	def button_press(self, button, event):
+		"""Left button shows the Details dialog.
+		"""
+		logging.debug('Button press callback')
+		if event.button == 1:
+			self.on_details(None, None)
 
 	def on_update(self, component, verb):
 		"""Update the RSS on demand.
@@ -380,6 +413,9 @@ class OrajeApplet(gnomeapplet.Applet):
 		problems and restore it back after the update.
 		"""
 		logging.debug('Menu on_update')
+		if self.details:
+			logging.warning('Details dialog is open, update cancelled')
+			return
 		gobject.source_remove(self.timeout)
 		self.update_rss()
 		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
@@ -539,6 +575,98 @@ class OrajeApplet(gnomeapplet.Applet):
 		about.run()
 		about.destroy()
 		self.about = None
+
+	def _set_details(self, ui):
+
+		logging.debug('Setting details')
+
+		image = ui.get_object('image')
+		self.load_image('%s%s' % 
+			(self.theme['base'], self.theme['status'][self.status]),
+				96, image)
+		conditions = ui.get_object('conditions')
+		conditions.set_markup(self.weather['condition']['text'])
+		temperature = ui.get_object('temperature')
+		temperature.set_markup('<big><b>%s<sup><small>o</small></sup>%c</b></big>' % (
+				self.weather['condition']['temp'],
+				self.weather['units']['temperature']))
+
+		location = ui.get_object('location')
+		location.set_text('%s (%s)' % 
+				(self.weather['location']['city'], 
+				self.weather['location']['country']))
+
+		date = ui.get_object('date')
+		date.set_text(self.weather['condition']['date'])
+
+		chill = ui.get_object('chill')
+		chill.set_markup('%s<sup><small>o</small></sup>%c' % (
+			self.weather['wind']['chill'],
+			self.weather['units']['temperature']))
+
+		pressure = ui.get_object('pressure')
+		pressure.set_text('%s%s' % (
+			self.weather['atmosphere']['pressure'],
+			self.weather['units']['pressure']))
+
+		humidity = ui.get_object('humidity')
+		humidity.set_text('%s%%' % self.weather['atmosphere']['humidity'])
+
+		visibility = ui.get_object('visibility')
+		visibility.set_text('%s%s' % (
+			self.weather['atmosphere']['visibility'],
+			self.weather['units']['distance']))
+
+		direction = self.weather['wind']['direction']
+		direction = self._translate_wind(direction)
+
+		wind = ui.get_object('wind')
+		wind.set_text('%s %s%s' % (
+			direction,
+			self.weather['wind']['speed'],
+			self.weather['units']['speed']))
+
+		sunrise = ui.get_object('sunrise')
+		sunrise.set_text(self.weather['astronomy']['sunrise'])
+
+		sunset = ui.get_object('sunset')
+		sunset.set_text(self.weather['astronomy']['sunset'])
+
+	def on_details(self, component, verb):
+		"""Details dialog.
+		"""
+		if self.details:
+			return
+		self.details = True
+
+		logging.debug('Menu on_details')
+		ui = gtk.Builder()
+		ui.add_from_file('%s/lib/OrajeApplet/details.ui' % sys.prefix)
+		dialog = ui.get_object('Details')
+		dialog.set_title(self.PACKAGE + ' Details')
+
+		self._set_details(ui)
+
+		update = ui.get_object('update')
+		update.connect('clicked', self.on_details_update, ui, dialog)
+
+		dialog.show_all()
+		while True:
+			if dialog.run() != 1:
+				break
+		dialog.destroy()
+		self.details = None
+
+	def on_details_update(self, button, ui, dialog):
+		"""Update the forecast on Details dialog.
+		"""
+		logging.debug('on_details_update')
+		gobject.source_remove(self.timeout)
+		self.update_rss()
+		self._set_details(ui)
+		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
+			update_rss_callback, self)
+		dialog.response(1)
 
 def OrajeFactory(applet, iid):
 	"""Function to register OrajeApplet class.
