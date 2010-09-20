@@ -30,7 +30,7 @@ WOEID
 -----
 
 Yahoo! Weather API doesn't provide a way to find a location, so you have to
-browse Yahoo Weather (http://weather.yahoo.com/), find your location
+browse Yahoo! Weather (http://weather.yahoo.com/), find your location
 and get the number at the end of the URL. That's your WOEID.
 
 For example:
