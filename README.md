@@ -21,9 +21,9 @@ This package requires:
 
 $ sudo python setup.py install --prefix=/usr
 
-PS: some distributions install in /usr/local by default, and Bonobo doesn't
-find the applet files in that path. The 'prefix' switch it's there to fix
-that, although it isn't necessary in all cases.
+PS: some distributions install the applet in /usr/local by default, and 
+Bonobo doesn't find the files in that path. The 'prefix' switch it's
+used to fix that, although it isn't necessary in all cases.
 
 
 WOEID
