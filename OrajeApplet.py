@@ -605,7 +605,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			self.weather['units']['temperature']))
 
 		pressure = ui.get_object('pressure')
-		pressure.set_text('%s%s' % (
+		pressure.set_text('%s %s' % (
 			self.weather['atmosphere']['pressure'],
 			self.weather['units']['pressure']))
 
@@ -613,7 +613,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		humidity.set_text('%s%%' % self.weather['atmosphere']['humidity'])
 
 		visibility = ui.get_object('visibility')
-		visibility.set_text('%s%s' % (
+		visibility.set_text('%s %s' % (
 			self.weather['atmosphere']['visibility'],
 			self.weather['units']['distance']))
 
@@ -621,7 +621,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		direction = self._translate_wind(direction)
 
 		wind = ui.get_object('wind')
-		wind.set_text('%s %s%s' % (
+		wind.set_text('%s %s %s' % (
 			direction,
 			self.weather['wind']['speed'],
 			self.weather['units']['speed']))
