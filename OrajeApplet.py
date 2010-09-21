@@ -94,7 +94,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.applet.setup_menu_from_file (
 			None, 'OrajeApplet.xml',
 			None, [('Details', self.on_details), 
-					('Update', self.on_update),
+					('Refresh', self.on_refresh),
 					('Prefs', self.on_preferences),
 					('About', self.on_about)])
 
@@ -406,8 +406,8 @@ class OrajeApplet(gnomeapplet.Applet):
 		if event.button == 1:
 			self.on_details(None, None)
 
-	def on_update(self, component, verb):
-		"""Update the RSS on demand.
+	def on_refresh(self, component, verb):
+		"""Refresh the RSS on demand.
 
 		Remove the existing timeout before updating the RSS to avoid
 		problems and restore it back after the update.

@@ -2,7 +2,7 @@
 	<popups>
 		<popup name="button3">
 			<menuitem name="Details" verb="Details" _label="_Details"/>
-			<menuitem name="Update" verb="Update" _label="_Update" pixtype="stock" pixname="gtk-refresh"/>
+			<menuitem name="Refresh" verb="Refresh" _label="_Refresh" pixtype="stock" pixname="gtk-refresh"/>
 			<separator/>
 			<menuitem name="Prefs" verb="Prefs" _label="_Preferences" pixtype="stock" pixname="gtk-properties"/>
 			<menuitem name="About" verb="About" _label="_About" pixtype="stock" pixname="gtk-about"/>
