@@ -148,6 +148,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		except Exception as e:
 			logging.error('Error setting new status: %s' % e)
 
+		rss.close()
 		rss = None
 		self.error = False
 
