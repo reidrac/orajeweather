@@ -27,7 +27,7 @@ Oraje Applet requires:
  - gnome python bindings
  - xml.dom (minidom)
  - json (or simplejson)
- - urllib
+ - urllib2
 
 This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
@@ -58,7 +58,7 @@ except:
 	logging.error('mindom is needed to run this application')
 	exit(1)
 
-import urllib
+import urllib2
 
 __version__='0.1'
 
@@ -154,7 +154,7 @@ class OrajeApplet(gnomeapplet.Applet):
 	def _get_rss(self, url):
 
 		try:
-			rss = urllib.urlopen(url)
+			rss = urllib2.urlopen(url)
 		except Exception as e:
 			logging.error('Error downloading the RSS: %s' % e)
 			return None

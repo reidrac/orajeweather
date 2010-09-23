@@ -17,7 +17,7 @@ This package requires:
  - gnome python bindings
  - xml.dom (minidom)
  - json (or simplejson)
- - urllib
+ - urllib2
 
 $ sudo python setup.py install --prefix=/usr
 
