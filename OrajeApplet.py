@@ -564,7 +564,9 @@ class OrajeApplet(gnomeapplet.Applet):
 			'version': self.VERSION,
 			'logo': gtk.gdk.pixbuf_new_from_file_at_size(icon, 96, 96),
 			'comments': 'Another weather applet for Gnome',
-			'copyright': u'Copyright © 2010 Juan J. Martínez'
+			'copyright': 
+				u'Copyright © 2010 Juan J. Martínez <jjm@usebox.net>',
+			'website': 'http://www.usebox.net/jjm/orajeapplet/'
 		}
 		for i, v in info.items():
 			about.set_property(i, v)
