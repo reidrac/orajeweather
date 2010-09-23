@@ -36,7 +36,7 @@
                     <property name="visible">True</property>
                     <property name="yalign">0</property>
                     <property name="ypad">40</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                     <property name="use_markup">True</property>
                   </object>
                   <packing>
@@ -128,7 +128,7 @@
                   <object class="GtkLabel" id="location">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -139,7 +139,8 @@
                   <object class="GtkLabel" id="date">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="yalign">0.46000000834465027</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -152,7 +153,7 @@
                   <object class="GtkLabel" id="chill">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -165,7 +166,7 @@
                   <object class="GtkLabel" id="pressure">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -178,7 +179,7 @@
                   <object class="GtkLabel" id="humidity">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -191,7 +192,7 @@
                   <object class="GtkLabel" id="visibility">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -206,7 +207,7 @@
                     <property name="xalign">0</property>
                     <property name="yalign">0</property>
                     <property name="ypad">2</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -242,7 +243,7 @@
                   <object class="GtkLabel" id="wind">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -267,7 +268,7 @@
                   <object class="GtkLabel" id="sunrise">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -292,7 +293,7 @@
                   <object class="GtkLabel" id="sunset">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">label</property>
+                    <property name="label" translatable="yes">??</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

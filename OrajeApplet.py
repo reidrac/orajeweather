@@ -583,6 +583,11 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.load_image('%s%s' % 
 			(self.theme['base'], self.theme['status'][self.status]),
 				96, image)
+
+		if self.weather is None:
+			logging.warning('no weather info available')
+			return
+
 		conditions = ui.get_object('conditions')
 		conditions.set_markup(self.weather['condition']['text'])
 		temperature = ui.get_object('temperature')
