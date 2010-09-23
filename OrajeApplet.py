@@ -549,8 +549,6 @@ class OrajeApplet(gnomeapplet.Applet):
 
 	def on_about(self, component, verb):
 		"""Show an About dialog.
-
-		Use the 'storm' icon from current theme.
 		"""
 		if self.about:
 			return
@@ -558,7 +556,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		logging.debug('Menu on_about')
 
-		icon = '%s%s' % (self.theme['base'], self.theme['status']['storm'])
+		icon = '%s/share/icons/OrajeApplet.svg' % sys.prefix
 
 		about = gtk.AboutDialog()
 		info = {
@@ -570,8 +568,8 @@ class OrajeApplet(gnomeapplet.Applet):
 		}
 		for i, v in info.items():
 			about.set_property(i, v)
-		about.set_icon_from_file(icon)
 		about.connect('response', lambda self, *args: self.destroy())
+		about.set_icon_name('help-about')
 		about.show_all()
 		about.run()
 		about.destroy()
@@ -650,6 +648,9 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		update = ui.get_object('update')
 		update.connect('clicked', self.on_details_update, ui, dialog)
+
+		icon = '%s/share/icons/OrajeApplet.svg' % sys.prefix
+		dialog.set_icon_from_file(icon)
 
 		dialog.show_all()
 		while True:

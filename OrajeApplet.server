@@ -15,6 +15,6 @@
 	</oaf_attribute>
 	<oaf_attribute name="name" type="string" value="Oraje Applet"/>
 	<oaf_attribute name="description" type="string" value="Weather forecast viewer"/>
-	<oaf_attribute name="panel:icon" type="string" value="weather-storm"/>
+	<oaf_attribute name="panel:icon" type="string" value="OrajeApplet.svg"/>
 </oaf_server>
 </oaf_info>
