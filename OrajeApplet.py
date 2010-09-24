@@ -62,7 +62,7 @@ except:
 
 import urllib2
 
-__version__='0.1'
+__version__='0.2'
 
 class OrajeApplet(gnomeapplet.Applet):
 	"""Module that implements gnomeapplet.Applet.

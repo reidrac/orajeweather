@@ -1,3 +1,10 @@
+* Fri Sep 24 2010 Juan J. Martinez <jjm@usebox.net> 0.02-1
+- New: NetworkManager support through DBUS
+- New: applet icon
+- Fix: north wind direction
+- Fix: small UI fixes
+- Fix: don't crash on details when there's no weather data
+
 * Sat Sep 18 2010 Juan J. Martinez <jjm@usebox.net> 0.01-1
 - First public release
 
