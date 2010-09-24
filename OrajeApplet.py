@@ -29,6 +29,8 @@ Oraje Applet requires:
  - json (or simplejson)
  - urllib2
 
+Optionally dbus is used to support NetworkManager.
+
 This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
 
@@ -77,10 +79,14 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.size = None
 		self.label = None
 
+		self.dbus = None
 		self.status = None
 		self.weather = None
 		self.timeout = None
+
 		self.error = True
+		self.connection = False
+		self.nm = True
 
 		self.conf_file = None
 		self.conf = None
@@ -121,10 +127,92 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.applet.connect('button-press-event', self.button_press)
 		self.applet.show_all()
 
-		self.update_rss()
+		# NM support using DBUS
+		try:
+			import dbus
+			from dbus.mainloop.glib import DBusGMainLoop
+		except:
+			logging.error("DBUS Python support not found, NM disabled")
+			self.nm = False
+		else:
+			try:
+				DBusGMainLoop(set_as_default = True)
+				self.dbus = dbus.SystemBus()
+				self.init_nm()
+			except:
+				logging.error("Failed to access SystemBus, NM disabled")
+				self.nm = False
 
-		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
-			update_rss_callback, self)
+		if not self.nm:
+			# assume we're connected, without NM help
+			self.connection = True
+			self.update_rss()
+			self.timeout = gobject.timeout_add(
+				int(self.conf['update'])*60*1000,
+				update_rss_callback, self)
+
+
+	def init_nm(self):
+		"""Init NetworkManager support.
+
+		We ask NM through DBUS to check if we have network connection.
+		We also setup a callback on state changes.
+		"""
+
+		logging.debug('Init NM support')
+
+		proxy = self.dbus.get_object(
+			'org.freedesktop.NetworkManager', 
+			'/org/freedesktop/NetworkManager')
+
+		proxy.connect_to_signal('StateChanged', self.on_nm_state_changed)
+
+		state = proxy.Get(
+			'org.freedesktop.NetworkManager', 
+			'State',
+			dbus_interface="org.freedesktop.DBus.Properties")
+		self.on_nm_state_changed(state)
+		logging.debug('NM initial state is %d' % state)
+
+
+	def on_nm_state_changed(self, state):
+		"""Callback on NetworkManager state changes.
+
+		The second argument it's a reference to the OrajeApplet, so
+		update_rss() method is called to retrieve the RSS.
+		"""
+
+		logging.debug('on_nm_state_changed call, state is %d' % state)
+
+		if state == 3:
+			self.connected()
+		else:
+			self.connected(False)
+
+
+	def connected(self, state = True):
+		"""Changes connection state.
+
+		When connected, automatically a rss update is performed.
+		"""
+
+		if state == True:
+			logging.debug('Connected')
+
+			if not self.connection:
+				self.connection = True
+				self.update_rss()
+				if self.timeout is None:
+					self.timeout = gobject.timeout_add(
+						int(self.conf['update'])*60*1000,
+						update_rss_callback, self)
+		else:
+			logging.debug('Disconnected')
+			if self.connection:
+				gobject.source_remove(self.timeout)
+				self.timeout = None
+				self.connection = False
+
 
 	def update_rss(self):
 		"""Update weather data using location and units in user configuration.
@@ -132,7 +220,12 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		self._update_rss(self.conf['location'], self.conf['units'])
 
+
 	def _update_rss(self, w, c):
+
+		if not self.connection:
+			logging.warning('_update_rss called on disconnected state')
+			return
 
 		rss = self._get_rss(self.YAHOO_API % (w, c))
 		if rss is None:
@@ -152,7 +245,11 @@ class OrajeApplet(gnomeapplet.Applet):
 		rss = None
 		self.error = False
 
+
 	def _get_rss(self, url):
+
+		if not self.connection:
+			return None
 
 		try:
 			rss = urllib2.urlopen(url)
@@ -163,6 +260,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		return rss
 
 	def _translate_wind(self, angle):
+
 		table = [
 			[378.75, 11.25, 'N'],
 			[11.25, 33.75, 'NNE'],
@@ -188,6 +286,7 @@ class OrajeApplet(gnomeapplet.Applet):
 				return i[2]
 
 		return '?'
+
 
 	def dom_to_weather(self, dom):
 		"""Translates from Yahoo! Weather XML into Oraje weather dict.
@@ -216,6 +315,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			weather[t] = node
 
 		return weather
+
 
 	def load_configuration(self):
 		"""Loads user's configuration in JSON format.
@@ -257,6 +357,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			conf_fd.close()
 
 		return (conf_file, conf)
+
 
 	def save_configuration(self):
 		"""Save current configuration.
@@ -307,6 +408,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		return theme
 
+
 	def set_status(self, status, desc=None, force=False):
 		"""Sets the status checking it's supported by current theme.
 		"""
@@ -324,7 +426,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			logging.error('Unknown status %s, ignored' % status)
 			return
 
-		if self.weather:
+		if self.weather is not None:
 			temp = ' %s<sup><small>o</small></sup>%c' % (
 				self.weather['condition']['temp'],
 				self.weather['units']['temperature']
@@ -381,16 +483,20 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		return image
 
+
 	def change_size(self, applet, size):
 		"""Change the size of the image if the panel size changes.
 		"""
+
 		logging.debug('Change size callback')
 		self.size = size
 		self.set_status(self.status, force=True)
 
+
 	def change_background(self, applet, type, color, pixmap):
 		"""Change applet background to fit planel theme/style.
 		"""
+
 		logging.debug('Change background callback')
 		applet.set_style(None)
 		applet.modify_style(gtk.RcStyle())
@@ -400,12 +506,15 @@ class OrajeApplet(gnomeapplet.Applet):
 		elif type == gnomeapplet.PIXMAP_BACKGROUND:
 			applet.get_style().bg_pixmap[gtk.STATE_NORMAL] = pixmap
 
+
 	def button_press(self, button, event):
 		"""Left button shows the Details dialog.
 		"""
+
 		logging.debug('Button press callback')
 		if event.button == 1:
 			self.on_details(None, None)
+
 
 	def on_refresh(self, component, verb):
 		"""Refresh the RSS on demand.
@@ -413,14 +522,22 @@ class OrajeApplet(gnomeapplet.Applet):
 		Remove the existing timeout before updating the RSS to avoid
 		problems and restore it back after the update.
 		"""
+
 		logging.debug('Menu on_update')
 		if self.details:
 			logging.warning('Details dialog is open, update cancelled')
 			return
-		gobject.source_remove(self.timeout)
-		self.update_rss()
-		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
-			update_rss_callback, self)
+
+		if self.connection:
+			if self.timeout is not None:
+				gobject.source_remove(self.timeout)
+
+			self.update_rss()
+
+			self.timeout = gobject.timeout_add(
+				int(self.conf['update'])*60*1000,
+				update_rss_callback, self)
+
 
 	def on_preferences(self, component, verb):
 		"""Preferences dialog.
@@ -470,6 +587,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.save_configuration()
 		self.prefs = None
 
+
 	def on_woeid_change(self, entry, event, label):
 		"""Manage WEID change.
 
@@ -481,7 +599,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		"""
 		logging.debug('Preferences, on_woeid_change')
 		woeid = entry.get_text()
-		if woeid != self.conf['location']:
+		if woeid != self.conf['location'] and self.connection:
 			logging.debug('woeid changed, checking')
 			label.set_markup('<small><i>Checking...</i></small>')
 
@@ -506,24 +624,30 @@ class OrajeApplet(gnomeapplet.Applet):
 			self.conf['location'] = woeid
 			self.set_status(self.theme['conditions'][self.weather['condition']['code']]['status'],
 				self.weather['condition']['text'])
-		else:
+		elif self.weather is not None:
 			# in case there was a previous error, don't confuse
 			# the user if he puts the old WOID back
 			label.set_markup('<small><i>%s (%s)</i></small>' % 
 				(self.weather['location']['city'], 
 				self.weather['location']['country']))
 
+
 	def on_interval_change(self, spin, event):
 		"""Manage update interval change.
 		"""
+
 		logging.debug('Preferences, on_interval_change')
 		interval = spin.get_text()
 		if interval != self.conf['update']:
 			logging.debug('interval changed')
 			self.conf['update'] = interval
-			gobject.source_remove(self.timeout)
-			self.timeout = gobject.timeout_add(
-				int(self.conf['update'])*60*1000, update_rss_callback, self)
+			if self.connection:
+				if self.timeout is not None:
+					gobject.source_remove(self.timeout)
+				self.timeout = gobject.timeout_add(
+					int(self.conf['update'])*60*1000, 
+					update_rss_callback, self)
+
 
 	def on_units_change(self, combo):
 		"""Manage units change.
@@ -533,6 +657,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		FIXME: use Farenheit and make the conversion internally.
 		"""
+
 		logging.debug('Preferences, on_units_change')
 		text = combo.get_active_text()
 		# FIXME: we shouldn't check the text
@@ -545,11 +670,13 @@ class OrajeApplet(gnomeapplet.Applet):
 			self.conf['units'] = units
 			# FIXME: not needed if we were using one type of unit
 			# internally and converting it before showing it to the user
-			self.update_rss()
+			if self.connection:
+				self.update_rss()
 
 	def on_about(self, component, verb):
 		"""Show an About dialog.
 		"""
+
 		if self.about:
 			return
 		self.about = True
@@ -641,6 +768,7 @@ class OrajeApplet(gnomeapplet.Applet):
 	def on_details(self, component, verb):
 		"""Details dialog.
 		"""
+
 		if self.details:
 			return
 		self.details = True
@@ -670,19 +798,26 @@ class OrajeApplet(gnomeapplet.Applet):
 		"""Update the forecast on Details dialog.
 		"""
 		logging.debug('on_details_update')
-		gobject.source_remove(self.timeout)
-		self.update_rss()
+		if self.connection:
+			if self.timeout is not None:
+				gobject.source_remove(self.timeout)
+				self.timeout = None
+			self.update_rss()
+			self.timeout = gobject.timeout_add(
+				int(self.conf['update'])*60*1000,
+				update_rss_callback, self)
 		self._set_details(ui)
-		self.timeout = gobject.timeout_add(int(self.conf['update'])*60*1000,
-			update_rss_callback, self)
 		dialog.response(1)
+
 
 def OrajeFactory(applet, iid):
 	"""Function to register OrajeApplet class.
 	"""
+
 	logging.debug('Starting OrajeApplet instance: %s %s' % (applet,iid))
 	OrajeApplet(applet, iid)
 	return True
+
 
 def update_rss_callback(data):
 	"""Function to be executed periodically.
@@ -690,14 +825,17 @@ def update_rss_callback(data):
 	The argument it's a reference to the OrajeApplet, so update_rss()
 	method is called to retrieve the RSS.
 	"""
+
 	logging.debug('Inside the callback')
 	data.update_rss()
 	logging.debug('Leaving the callback, see you later')
 	return True
 
+
 def usage():
 	"""Show the help screen.
 	"""
+
 	print """%s
 Usage: %s [OPTIONS]
 
@@ -710,6 +848,7 @@ OPTIONS:
 This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
 """ % (OrajeApplet.PACKAGE, sys.argv[0])
+
 
 if __name__ == '__main__':
 	gobject.type_register(OrajeApplet)
