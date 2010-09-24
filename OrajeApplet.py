@@ -262,7 +262,7 @@ class OrajeApplet(gnomeapplet.Applet):
 	def _translate_wind(self, angle):
 
 		table = [
-			[378.75, 11.25, 'N'],
+			[348.75, 371.25, 'N'],
 			[11.25, 33.75, 'NNE'],
 			[33.75, 56.25, 'NE'],
 			[56.25, 78.75, 'ENE'],
@@ -281,6 +281,11 @@ class OrajeApplet(gnomeapplet.Applet):
 		]
 
 		angle = int(angle)
+
+		# North is a special [348.75, 11.25]
+		if angle <= 11.25:
+			angle += 260
+
 		for i in table:
 			if angle >= i[0] and angle < i[1]:
 				return i[2]
