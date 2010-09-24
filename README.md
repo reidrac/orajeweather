@@ -19,6 +19,8 @@ This package requires:
  - json (or simplejson)
  - urllib2
 
+Optionally dbus is used to support NetworkManager.
+
 $ sudo python setup.py install --prefix=/usr
 
 PS: some distributions install the applet by default in /usr/local, and 
