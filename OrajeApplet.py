@@ -61,6 +61,8 @@ except:
 	exit(1)
 
 import urllib2
+from datetime import datetime
+import locale
 
 __version__='0.2'
 
@@ -83,6 +85,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.status = None
 		self.weather = None
 		self.timeout = None
+		self.last_fetch = None
 
 		self.error = True
 		self.connection = False
@@ -252,11 +255,25 @@ class OrajeApplet(gnomeapplet.Applet):
 			return None
 
 		try:
-			rss = urllib2.urlopen(url)
-		except Exception as e:
-			logging.error('Error downloading the RSS: %s' % e)
+			request = urllib2.Request(url)
+			if self.last_fetch:
+				request.add_header('If-Modified-Since', self.last_fetch)
+
+			rss = urllib2.urlopen(request)
+
+		except urllib2.HTTPError, error: 
+			if error.code == 304:
+				logging.debug('RSS not modified, last_fetch: %s' % 
+					self.last_fetch)
+			else:
+				logging.error('HTTP Error downloading the RSS: %s' % error)
+			return None
+		except urllib2.URLError, error:
+			logging.error('Error downloading the RSS: %s' % error)
 			return None
 
+		locale.setlocale(locale.LC_TIME, 'en_US')
+		self.last_fetch = datetime.utcnow().strftime('%a, %d %b %Y %T GMT')
 		return rss
 
 	def _translate_wind(self, angle):

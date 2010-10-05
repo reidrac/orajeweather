@@ -1,5 +1,3 @@
 - translation and gettext support
 - easier WOEID management (may be use Yahoo! GePlanet)
 - include a beautiful weather icon set
-- make RSS download conditional with if-modified-since
-
