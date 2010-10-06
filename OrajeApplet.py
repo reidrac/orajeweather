@@ -160,7 +160,6 @@ class OrajeApplet(gnomeapplet.Applet):
 				if self.notify is not None:
 					logging.debug('Notification support enabled')
 			except:
-				raise
 				logging.error("Failed to access SessionBus, notifications disabled")
 
 		if not self.has_nm:
