@@ -81,7 +81,10 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.size = None
 		self.label = None
 
-		self.dbus = None
+		self.sybus = None
+		self.sebus = None
+		self.notify = None
+
 		self.status = None
 		self.weather = None
 		self.timeout = None
@@ -89,7 +92,8 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		self.error = True
 		self.connection = False
-		self.nm = True
+		self.has_dbus = True
+		self.has_nm = True
 
 		self.conf_file = None
 		self.conf = None
@@ -136,17 +140,30 @@ class OrajeApplet(gnomeapplet.Applet):
 			from dbus.mainloop.glib import DBusGMainLoop
 		except:
 			logging.error("DBUS Python support not found, NM disabled")
-			self.nm = False
+			self.has_dbus = False
+			self.has_nm = False
 		else:
 			try:
 				DBusGMainLoop(set_as_default = True)
-				self.dbus = dbus.SystemBus()
+				self.sybus = dbus.SystemBus()
 				self.init_nm()
 			except:
 				logging.error("Failed to access SystemBus, NM disabled")
-				self.nm = False
+				self.has_nm = False
 
-		if not self.nm:
+			try:
+				self.sebus = dbus.SessionBus()
+				self.notify = dbus.Interface(self.sebus.get_object(
+					'org.freedesktop.Notifications',
+					'/org/freedesktop/Notifications'),
+					'org.freedesktop.Notifications')
+				if self.notify is not None:
+					logging.debug('Notification support enabled')
+			except:
+				raise
+				logging.error("Failed to access SessionBus, notifications disabled")
+
+		if not self.has_nm:
 			# assume we're connected, without NM help
 			self.connection = True
 			self.update_rss()
@@ -164,7 +181,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		logging.debug('Init NM support')
 
-		proxy = self.dbus.get_object(
+		proxy = self.sybus.get_object(
 			'org.freedesktop.NetworkManager', 
 			'/org/freedesktop/NetworkManager')
 
@@ -368,7 +385,8 @@ class OrajeApplet(gnomeapplet.Applet):
 			conf_fd = None
 			logging.warning('Failed to load %s, using defaults' % conf_file)
 			conf = dict(update='15', units = 'c', location = '32997',
-				theme = '%s/lib/OrajeApplet/theme.json' % sys.prefix)
+				theme = '%s/lib/OrajeApplet/theme.json' % sys.prefix,
+				notify = False)
 		
 		if conf_fd:
 			try:
@@ -377,6 +395,11 @@ class OrajeApplet(gnomeapplet.Applet):
 				logging.error('Parsing error in %s: %s' % 
 					(conf_file, e))
 			conf_fd.close()
+
+		# migration for configuration <= 0.2
+		if not 'notify' in conf:
+			logging.info('Configuration <= 0.2, converted')
+			conf['notify'] = False
 
 		return (conf_file, conf)
 
@@ -467,6 +490,16 @@ class OrajeApplet(gnomeapplet.Applet):
 				temp
 			)
 			self.label.set_tooltip_markup(tip)
+
+			if self.notify is not None and self.conf['notify'] and new:
+				logging.debug('Sending a notification of new coditions')
+
+				# FIXME: the notification server must be able to find
+				# the icon -- currently we just get the icon name by
+				# removing the extension (the theme must be aware of this!)
+				self.notify.Notify(self.PACKAGE, 0, 
+					self.theme['status'][self.status][:-4],
+					'New conditions', tip, '', '', -1)
 		else:
 			tip = '...'
 
@@ -602,6 +635,13 @@ class OrajeApplet(gnomeapplet.Applet):
 			units.set_active(1)
 		units.connect('changed', self.on_units_change)
 
+		notify = ui.get_object('notify')
+		notify.set_active(self.conf['notify'])
+		if self.notify is not None:
+			notify.connect('toggled', self.on_notify_toggle)
+		else:
+			notify.set_sensitive(False)
+
 		dialog.show_all()
 		dialog.run()
 		dialog.destroy()
@@ -694,6 +734,15 @@ class OrajeApplet(gnomeapplet.Applet):
 			# internally and converting it before showing it to the user
 			if self.connection:
 				self.update_rss()
+
+
+	def on_notify_toggle(self, togglebutton):
+		"""Manage notify change.
+		"""
+
+		logging.debug('Preferences, on_notify_change')
+		self.conf['notify'] = togglebutton.get_active()
+
 
 	def on_about(self, component, verb):
 		"""Show an About dialog.
