@@ -29,7 +29,7 @@ Oraje Applet requires:
  - json (or simplejson)
  - urllib2
 
-Optionally dbus is used to support NetworkManager.
+Optionally dbus is used to support NetworkManager and notifications.
 
 This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.

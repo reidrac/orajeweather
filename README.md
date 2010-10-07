@@ -19,7 +19,7 @@ This package requires:
  - json (or simplejson)
  - urllib2
 
-Optionally dbus is used to support NetworkManager.
+Optionally dbus is used to support NetworkManager and notifications.
 
 $ sudo python setup.py install --prefix=/usr
 
