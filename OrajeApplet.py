@@ -64,7 +64,7 @@ import urllib2
 from datetime import datetime
 import locale
 
-__version__='0.2'
+__version__='0.3'
 
 class OrajeApplet(gnomeapplet.Applet):
 	"""Module that implements gnomeapplet.Applet.
