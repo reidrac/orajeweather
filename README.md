@@ -18,6 +18,7 @@ This package requires:
  - xml.dom (minidom)
  - json (or simplejson)
  - urllib2
+ - Gnome before 2.32
 
 Optionally dbus is used to support NetworkManager and notifications.
 
