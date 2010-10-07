@@ -1,3 +1,7 @@
+* Thu Oct 07 2010 Juan J. Martinez <jjm@usebox.net> 0.03-1
+- New: Notifications on conditions change
+- New: conditional HTTP requests
+
 * Fri Sep 24 2010 Juan J. Martinez <jjm@usebox.net> 0.02-1
 - New: NetworkManager support through DBUS
 - New: applet icon
