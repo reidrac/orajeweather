@@ -295,22 +295,22 @@ class OrajeApplet(gnomeapplet.Applet):
 	def _translate_wind(self, angle):
 
 		table = [
-			[348.75, 371.25, 'N'],
-			[11.25, 33.75, 'NNE'],
-			[33.75, 56.25, 'NE'],
-			[56.25, 78.75, 'ENE'],
-			[78.75, 101.25, 'E'],
-			[101.25, 123.75, 'ESE'],
-			[123.75, 146.25, 'SE'],
-			[146.25, 168.75, 'SSE'],
-			[168.75, 191.25, 'S'],
-			[191.25, 213.75, 'SSW'],
-			[213.75, 236.25, 'SW'],
-			[236.25, 258.75, 'WSW'],
-			[258.75, 281.25, 'W'],
-			[281.25, 303.75, 'WNW'],
-			[303.75, 326.25, 'NW'],
-			[326.25, 348.75, 'NNW']
+			[348.75, 371.25, _('N')],
+			[11.25, 33.75, _('NNE')],
+			[33.75, 56.25, _('NE')],
+			[56.25, 78.75, _('ENE')],
+			[78.75, 101.25, _('E')],
+			[101.25, 123.75, _('ESE')],
+			[123.75, 146.25, _('SE')],
+			[146.25, 168.75, _('SSE')],
+			[168.75, 191.25, _('S')],
+			[191.25, 213.75, _('SSW')],
+			[213.75, 236.25, _('SW')],
+			[236.25, 258.75, _('WSW')],
+			[258.75, 281.25, _('W')],
+			[281.25, 303.75, _('WNW')],
+			[303.75, 326.25, _('NW')],
+			[326.25, 348.75, _('NNW')]
 		]
 
 		angle = int(angle)
@@ -498,7 +498,7 @@ class OrajeApplet(gnomeapplet.Applet):
 				# removing the extension (the theme must be aware of this!)
 				self.notify.Notify(self.PACKAGE, 0, 
 					self.theme['status'][self.status][:-4],
-					'New conditions', tip, '', '', -1)
+					_('New conditions'), tip, '', '', -1)
 		else:
 			tip = '...'
 
@@ -604,6 +604,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		logging.debug('Menu on_preferences')
 		ui = gtk.Builder()
+		ui.set_translation_domain(self.PACKAGE)
 		ui.add_from_file('%s/lib/OrajeApplet/prefs.ui' % sys.prefix)
 		dialog = ui.get_object('Preferences')
 		dialog.set_title(self.PACKAGE + ' Preferences')
@@ -626,8 +627,8 @@ class OrajeApplet(gnomeapplet.Applet):
 		interval.connect('focus-out-event', self.on_interval_change)
 
   		units = ui.get_object('units')
-		units.append_text('Celsius')
-		units.append_text('Farenheit')
+		units.append_text(_('Celsius'))
+		units.append_text(_('Fahrenheit'))
 		if self.conf['units'] == 'c':
 			units.set_active(0)
 		else:
@@ -662,19 +663,19 @@ class OrajeApplet(gnomeapplet.Applet):
 		woeid = entry.get_text()
 		if woeid != self.conf['location'] and self.connection:
 			logging.debug('woeid changed, checking')
-			label.set_markup('<small><i>Checking...</i></small>')
+			label.set_markup(_('<small><i>Checking...</i></small>'))
 
 			rss = self._get_rss(self.YAHOO_API % (woeid, self.conf['units']))
 			if rss is None:
 				logging.warning('Failed to get the RSS, woeid %s' % woeid)
-				label.set_markup('<small><b>Error retrieving location</b></small>')
+				label.set_markup(_('<small><b>Error retrieving location</b></small>'))
 				return
 
 			try:
 				weather = self.dom_to_weather(minidom.parse(rss))
 			except:
 				logging.warning('Failed to parse the RSS, woeid %s' % woeid)
-				label.set_markup('<small><b>Error processing the location</b></small>')
+				label.set_markup(_('<small><b>Error processing the location</b></small>'))
 				return
 
 			label.set_markup('<small><i>%s (%s)</i></small>' % 
@@ -714,15 +715,15 @@ class OrajeApplet(gnomeapplet.Applet):
 		"""Manage units change.
 
 		Yahoo! Weather uses metric units when Celsius data is requested,
-		so we only have to deal with Celsius and Farenheit.
+		so we only have to deal with Celsius and Fahrenheit.
 
-		FIXME: use Farenheit and make the conversion internally.
+		FIXME: use Fahrenheit and make the conversion internally.
 		"""
 
 		logging.debug('Preferences, on_units_change')
 		text = combo.get_active_text()
 		# FIXME: we shouldn't check the text
-		if text == 'Celsius':
+		if text == _('Celsius'):
 			units = 'c'
 		else:
 			units = 'f'
@@ -760,7 +761,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			'program-name': self.PACKAGE,
 			'version': self.VERSION,
 			'logo': gtk.gdk.pixbuf_new_from_file_at_size(icon, 96, 96),
-			'comments': 'Another weather applet for Gnome',
+			'comments': _('Another weather applet for Gnome'),
 			'copyright': 
 				u'Copyright © 2010 Juan J. Martínez <jjm@usebox.net>',
 			'website': 'http://www.usebox.net/jjm/orajeapplet/'
@@ -845,6 +846,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		logging.debug('Menu on_details')
 		ui = gtk.Builder()
+		ui.set_translation_domain(self.PACKAGE)
 		ui.add_from_file('%s/lib/OrajeApplet/details.ui' % sys.prefix)
 		dialog = ui.get_object('Details')
 		dialog.set_title(self.PACKAGE + ' Details')
@@ -919,6 +921,8 @@ This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
 """ % (OrajeApplet.PACKAGE, sys.argv[0])
 
+import gettext
+gettext.install(OrajeApplet.PACKAGE, unicode=1)
 
 if __name__ == '__main__':
 	gobject.type_register(OrajeApplet)

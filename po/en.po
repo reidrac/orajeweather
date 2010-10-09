@@ -1,0 +1,185 @@
+#  Oraje Applet
+# Copyright (C) Juan J. Martinez <jjm@usebox.net>
+# This file is distributed under the same license as OrajeApplet package.
+# Juan J. Martínez <jjm@usebox.net>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OrajeApplet 0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-09 18:17+0100\n"
+"PO-Revision-Date: 2010-10-09 18:20+0100\n"
+"Last-Translator: Juan J. Martnez <jjm@usebox.net>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../OrajeApplet.py:298 (wind direction)
+msgid "N"
+msgstr "N"
+
+#: ../OrajeApplet.py:299 (wind direction)
+msgid "NNE"
+msgstr "NNE"
+
+#: ../OrajeApplet.py:300 (wind direction)
+msgid "NE"
+msgstr "NE"
+
+#: ../OrajeApplet.py:301 (wind direction)
+msgid "ENE"
+msgstr "ENE"
+
+#: ../OrajeApplet.py:302 (wind direction)
+msgid "E"
+msgstr "E"
+
+#: ../OrajeApplet.py:303 (wind direction)
+msgid "ESE"
+msgstr "ESE"
+
+#: ../OrajeApplet.py:304 (wind direction)
+msgid "SE"
+msgstr "SE"
+
+#: ../OrajeApplet.py:305 (wind direction)
+msgid "SSE"
+msgstr "SSE"
+
+#: ../OrajeApplet.py:306 (wind direction)
+msgid "S"
+msgstr "S"
+
+#: ../OrajeApplet.py:307 (wind direction)
+msgid "SSW"
+msgstr "SSW"
+
+#: ../OrajeApplet.py:308 (wind direction)
+msgid "SW"
+msgstr "SW"
+
+#: ../OrajeApplet.py:309 (wind direction)
+msgid "WSW"
+msgstr "WSW"
+
+#: ../OrajeApplet.py:310 (wind direction)
+msgid "W"
+msgstr "W"
+
+#: ../OrajeApplet.py:311 (wind direction)
+msgid "WNW"
+msgstr "WNW"
+
+#: ../OrajeApplet.py:312 (wind direction)
+msgid "NW"
+msgstr "NW"
+
+#: ../OrajeApplet.py:313 (wind direction)
+msgid "NNW"
+msgstr "NNW"
+
+#: ../OrajeApplet.py:501
+msgid "New conditions"
+msgstr "New conditions"
+
+#: ../OrajeApplet.py:629 ../OrajeApplet.py:725
+msgid "Celsius"
+msgstr "Celsius"
+
+#: ../OrajeApplet.py:630
+msgid "Fahrenheit"
+msgstr "Fahrenheit"
+
+#: ../OrajeApplet.py:665
+msgid "<small><i>Checking...</i></small>"
+msgstr "<small><i>Checking...</i></small>"
+
+#: ../OrajeApplet.py:670
+msgid "<small><b>Error retrieving location</b></small>"
+msgstr "<small><b>Error retrieving location</b></small>"
+
+#: ../OrajeApplet.py:677
+msgid "<small><b>Error processing the location</b></small>"
+msgstr "<small><b>Error processing the location</b></small>"
+
+#: ../OrajeApplet.py:763
+msgid "Another weather applet for Gnome"
+msgstr "Another weather applet for Gnome"
+
+#: ../ui/details.ui:64
+msgid "Location:"
+msgstr "Location:"
+
+#: ../ui/details.ui:72
+msgid "Last updated:"
+msgstr "Last updated:"
+
+#: ../ui/details.ui:84
+msgid "Feels like:"
+msgstr "Feels like:"
+
+#: ../ui/details.ui:96
+msgid "Barometer:"
+msgstr "Barometer:"
+
+#: ../ui/details.ui:108
+msgid "Humidity:"
+msgstr "Humidity:"
+
+#: ../ui/details.ui:120
+msgid "Visibility:"
+msgstr "Visibility:"
+
+#: ../ui/details.ui:223
+msgid "Conditions:"
+msgstr "Conditions:"
+
+#: ../ui/details.ui:235
+msgid "Wind:"
+msgstr "Wind:"
+
+#: ../ui/details.ui:260
+msgid "Sunrise:"
+msgstr "Sunrise:"
+
+#: ../ui/details.ui:285
+msgid "Sunset:"
+msgstr "Sunset:"
+
+#: ../ui/prefs.ui:65
+msgid "<small><i>City (Country)</i></small>"
+msgstr "<small><i>City (Country)</i></small>"
+
+#: ../ui/prefs.ui:92
+msgid ""
+"<small>Browse Yahoo! Weather and find your location.\n"
+"The <i>WOEID</i> it's the number ending the URL of the forecast.</small>"
+msgstr ""
+"<small>Browse Yahoo! Weather and find your location.\n"
+"The <i>WOEID</i> it's the number ending the URL of the forecast.</small>"
+
+#: ../ui/prefs.ui:114
+msgid "<b>Location</b>"
+msgstr "<b>Location</b>"
+
+#: ../ui/prefs.ui:142
+msgid "Update interval:"
+msgstr "Update interval:"
+
+#: ../ui/prefs.ui:165
+msgid "minutes"
+msgstr "minutes"
+
+#: ../ui/prefs.ui:182
+msgid "Units:"
+msgstr "Units:"
+
+#: ../ui/prefs.ui:215
+msgid "Notify on change"
+msgstr "Notify on change"
+
+#: ../ui/prefs.ui:235
+msgid "<b>Viewer</b>"
+msgstr "<b>Viewer</b>"
