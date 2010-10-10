@@ -849,7 +849,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		ui.set_translation_domain(self.PACKAGE)
 		ui.add_from_file('%s/lib/OrajeApplet/details.ui' % sys.prefix)
 		dialog = ui.get_object('Details')
-		dialog.set_title(self.PACKAGE + ' Details')
+		dialog.set_title('%s %s' % (self.PACKAGE, _('Details')))
 
 		self._set_details(ui)
 

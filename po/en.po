@@ -199,3 +199,7 @@ msgstr "_Preferences"
 #: ../OrajeApplet.xml:8
 msgid "_About"
 msgstr "_About"
+
+#: ../OrajeApplet.py:852
+msgid "Details"
+msgstr "Details"
