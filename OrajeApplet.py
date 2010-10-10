@@ -922,7 +922,7 @@ OPTIONS:
 	-h, --help          This help screen
 	-v, --version       Show version and exit
 	-d, --debug         Enable debug output
-	-w, --window        Launch in a standalong window for testing (debug=on)
+	-w, --window        Launch in a standalone window for testing (debug=on)
 
 This application uses Yahoo! Weather feeds and it's not endorsed or
 promoted by Yahoo! in any way.
