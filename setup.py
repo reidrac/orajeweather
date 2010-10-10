@@ -3,7 +3,7 @@ from distutils import cmd
 from distutils.command.build import build as _build
 from distutils.command.install_data import install_data as _install_data
 
-from OrajeApplet import __version__
+__version__ = '0.4'
 
 import os
 try:
@@ -53,6 +53,7 @@ setup(name='OrajeApplet',
 		('share/gnome-2.0/ui/', ['OrajeApplet.xml']),
 		('lib/OrajeApplet/', ['theme.json', 'ui/prefs.ui', 'ui/details.ui']),
 		('share/icons/', ['OrajeApplet.svg']),
-		('share/doc/OrajeApplet/', ['README.md', 'CHANGES', 'COPYING'])],
+		('share/doc/OrajeApplet-%s' % __version__,
+			['README.md', 'CHANGES', 'COPYING'])],
 	)
 
