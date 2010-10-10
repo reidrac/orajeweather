@@ -89,6 +89,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.weather = None
 		self.timeout = None
 		self.last_fetch = None
+		self.lc_time = locale.getlocale(locale.LC_TIME)
 
 		self.error = True
 		self.connection = False
@@ -290,6 +291,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		locale.setlocale(locale.LC_TIME, 'en_US')
 		self.last_fetch = datetime.utcnow().strftime('%a, %d %b %Y %T GMT')
+		locale.setlocale(locale.LC_TIME, self.lc_time)
 		return rss
 
 	def _translate_wind(self, angle):
@@ -801,7 +803,12 @@ class OrajeApplet(gnomeapplet.Applet):
 				self.weather['location']['country']))
 
 		date = ui.get_object('date')
-		date.set_text(self.weather['condition']['date'])
+		datestr = self.weather['condition']['date']
+		locale.setlocale(locale.LC_TIME, 'en_US')
+		datestr = datetime.strptime(datestr, '%a, %d %b %Y %I:%M %p %Z')
+		locale.setlocale(locale.LC_TIME, self.lc_time)
+		datestr = datetime.strftime(datestr, '%a %d %b, %H:%M')
+		date.set_text(datestr)
 
 		chill = ui.get_object('chill')
 		chill.set_markup('%s<sup><small>o</small></sup>%c' % (
