@@ -181,3 +181,19 @@ msgstr ""
 #: ../ui/prefs.ui:235
 msgid "<b>Viewer</b>"
 msgstr ""
+
+#: ../OrajeApplet.xml:4
+msgid "_Details"
+msgstr ""
+
+#: ../OrajeApplet.xml:5
+msgid "_Refresh"
+msgstr ""
+
+#: ../OrajeApplet.xml:7
+msgid "_Preferences"
+msgstr ""
+
+#: ../OrajeApplet.xml:8
+msgid "_About"
+msgstr ""

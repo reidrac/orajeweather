@@ -183,3 +183,19 @@ msgstr "Notify on change"
 #: ../ui/prefs.ui:235
 msgid "<b>Viewer</b>"
 msgstr "<b>Viewer</b>"
+
+#: ../OrajeApplet.xml:4
+msgid "_Details"
+msgstr "_Details"
+
+#: ../OrajeApplet.xml:5
+msgid "_Refresh"
+msgstr "_Refresh"
+
+#: ../OrajeApplet.xml:7
+msgid "_Preferences"
+msgstr "_Preferences"
+
+#: ../OrajeApplet.xml:8
+msgid "_About"
+msgstr "_About"
