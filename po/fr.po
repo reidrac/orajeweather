@@ -2,8 +2,7 @@
 # Copyright (C) Juan J. Martinez <jjm@usebox.net>
 # This file is distributed under the same license as OrajeApplet package.
 # Alex Puerto <astoret@gmail.com>, 2010.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: OrajeApplet 0.4\n"
@@ -94,85 +93,87 @@ msgstr "Fahrenheit"
 
 #: ../OrajeApplet.py:665
 msgid "<small><i>Checking...</i></small>"
-msgstr ""
+msgstr "<small><i>Vérifiant...</i></small>"
 
 #: ../OrajeApplet.py:670
 msgid "<small><b>Error retrieving location</b></small>"
-msgstr ""
+msgstr "<small><b>Erreur d'extraction de l'emplacement</b></small>"
 
 #: ../OrajeApplet.py:677
 msgid "<small><b>Error processing the location</b></small>"
-msgstr ""
+msgstr "<small><b>Erreur lors du traitement de l'emplacement</b></small>"
 
 #: ../OrajeApplet.py:763
 msgid "Another weather applet for Gnome"
-msgstr ""
+msgstr "Encore une autre météo applet pour Gnome"
 
 #: ../ui/details.ui:64
 msgid "Location:"
-msgstr ""
+msgstr "Emplacement:"
 
 #: ../ui/details.ui:72
 msgid "Last updated:"
-msgstr ""
+msgstr "Dèrniere mise à jour:"
 
 #: ../ui/details.ui:84
 msgid "Feels like:"
-msgstr ""
+msgstr "Température ressentie:"
 
 #: ../ui/details.ui:96
 msgid "Barometer:"
-msgstr ""
+msgstr "Baromètre:"
 
 #: ../ui/details.ui:108
 msgid "Humidity:"
-msgstr ""
+msgstr "Humidité:"
 
 #: ../ui/details.ui:120
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibilité:"
 
 #: ../ui/details.ui:223
 msgid "Conditions:"
-msgstr ""
+msgstr "Conditions:"
 
 #: ../ui/details.ui:235
 msgid "Wind:"
-msgstr ""
+msgstr "Vent:"
 
 #: ../ui/details.ui:260
 msgid "Sunrise:"
-msgstr ""
+msgstr "Lever du soleil:"
 
 #: ../ui/details.ui:285
 msgid "Sunset:"
-msgstr ""
+msgstr "Coucher du soleil:"
 
 #: ../ui/prefs.ui:65
 msgid "<small><i>City (Country)</i></small>"
-msgstr ""
+msgstr "<small><i>Ville (Pays)</i></small>"
 
 #: ../ui/prefs.ui:92
 msgid ""
 "<small>Browse Yahoo! Weather and find your location.\n"
 "The <i>WOEID</i> it's the number ending the URL of the forecast.</small>"
 msgstr ""
+"<small>Naviguez sur Yahoo! Weather et trouvez votre emplacement.\n"
+"Le <i>WOEID</i> c'est le nombre au bout de l'URL de la prévision.</small>"
 
 #: ../ui/prefs.ui:114
 msgid "<b>Location</b>"
-msgstr ""
+msgstr "<b>Emplacement</b>"
 
 #: ../ui/prefs.ui:142
 msgid "Update interval:"
-msgstr ""
+msgstr "Intervalle de mise à jour:"
 
 #: ../ui/prefs.ui:165
 msgid "minutes"
-msgstr ""
+msgstr "minutes"
 
 #: ../ui/prefs.ui:182
 msgid "Units:"
-msgstr ""
+msgstr "Unités:"
 
 #: ../ui/prefs.ui:215
 msgid "Notify on change"
@@ -201,4 +202,3 @@ msgstr ""
 #: ../OrajeApplet.py:852
 msgid "Details"
 msgstr ""
-
