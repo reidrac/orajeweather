@@ -14,10 +14,9 @@ Install
 
 This package requires:
 
- - gnome python bindings
- - xml.dom (minidom)
- - json (or simplejson)
- - urllib2
+ - Python >= 2.6
+ - PyGTK2 >= 2.16.0
+ - Gnome python bindings (including applet support)
  - Gnome before 2.32
 
 Optionally dbus is used to support NetworkManager and notifications.
@@ -51,4 +50,5 @@ Copyright (C) 2010 Juan J. Martinez <jjm@usebox.net>
 This program is free software under the terms of GPL version 3.
 Please check COPYING file for further details.
 
+http://www.usebox.net/jjm/orajeapplet/
 
