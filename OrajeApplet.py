@@ -930,6 +930,7 @@ promoted by Yahoo! in any way.
 
 import gettext
 gettext.install(OrajeApplet.PACKAGE, unicode=1)
+locale.textdomain(OrajeApplet.PACKAGE)
 
 if __name__ == '__main__':
 	gobject.type_register(OrajeApplet)
