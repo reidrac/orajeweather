@@ -177,28 +177,28 @@ msgstr "Unités:"
 
 #: ../ui/prefs.ui:215
 msgid "Notify on change"
-msgstr ""
+msgstr "Notifier de changements"
 
 #: ../ui/prefs.ui:235
 msgid "<b>Viewer</b>"
-msgstr ""
+msgstr "<b>Visionneur</b>"
 
 #: ../OrajeApplet.xml:4
 msgid "_Details"
-msgstr ""
+msgstr "_Détails"
 
 #: ../OrajeApplet.xml:5
 msgid "_Refresh"
-msgstr ""
+msgstr "_Rafraîchir"
 
 #: ../OrajeApplet.xml:7
 msgid "_Preferences"
-msgstr ""
+msgstr "Pré_férences"
 
 #: ../OrajeApplet.xml:8
 msgid "_About"
-msgstr ""
+msgstr "À _propos"
 
 #: ../OrajeApplet.py:852
 msgid "Details"
-msgstr ""
+msgstr "Détails"
