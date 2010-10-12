@@ -257,7 +257,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			logging.debug(self.weather)
 
 			self.set_status(self.theme['conditions'][self.weather['condition']['code']]['status'],
-				_(self.theme['conditions'][self.weather['condition']['code']]['desc'].title()))
+				_(self.theme['conditions'][self.weather['condition']['code']]['desc']).title())
 		except Exception as e:
 			logging.error('Error setting new status: %s' % e)
 
@@ -687,7 +687,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			self.weather = weather
 			self.conf['location'] = woeid
 			self.set_status(self.theme['conditions'][self.weather['condition']['code']]['status'],
-				_(self.theme['conditions'][self.weather['condition']['code']]['desc'].title()))
+				_(self.theme['conditions'][self.weather['condition']['code']]['desc']).title())
 		elif self.weather is not None:
 			# in case there was a previous error, don't confuse
 			# the user if he puts the old WOID back
@@ -791,7 +791,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			return
 
 		conditions = ui.get_object('conditions')
-		conditions.set_markup(_(self.theme['conditions'][self.weather['condition']['code']]['desc'].title()))
+		conditions.set_markup(_(self.theme['conditions'][self.weather['condition']['code']]['desc']).title())
 		temperature = ui.get_object('temperature')
 		temperature.set_markup('<big><b>%s<sup><small>o</small></sup>%c</b></big>' % (
 				self.weather['condition']['temp'],
