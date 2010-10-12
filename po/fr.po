@@ -204,9 +204,8 @@ msgid "Details"
 msgstr "Détails"
 
 #: ../OrajeApplet.server (this used by Gnome panel through bonobo)
-#, fuzzy
 msgid "Weather conditions viewer"
-msgstr "Nouvelles conditions"
+msgstr ""
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered snow showers"
@@ -217,9 +216,8 @@ msgid "heavy snow"
 msgstr ""
 
 #: weather conditions, use gweather trans as base when possible
-#, fuzzy
 msgid "windy"
-msgstr "Vent:"
+msgstr ""
 
 #: weather conditions, use gweather trans as base when possible
 msgid "cold"
