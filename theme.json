@@ -1,5 +1,5 @@
 {
-	"base":"/usr/share/icons/gnome/scalable/status/",
+	"base":"/usr/lib/OrajeApplet/",
 	"status":
 	{
 		"loading": "gnome-fs-loading-icon.svg",
