@@ -2,7 +2,7 @@
 # Copyright (C) Juan J. Martinez <jjm@usebox.net>
 # This file is distributed under the same license as OrajeApplet package.
 # Juan J. Martínez <jjm@usebox.net>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: OrajeApplet 0.4\n"
@@ -370,8 +370,8 @@ msgstr ""
 
 #: weather conditions, use gweather trans as base when possible
 msgid "sunny"
-msgstr ""
+msgstr "soleado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "not available"
-msgstr ""
+msgstr "no disponible"
