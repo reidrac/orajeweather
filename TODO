@@ -1,5 +1,3 @@
-- translation and gettext support
-- easier WOEID management (may be use Yahoo! GePlanet)
-- include a beautiful weather icon set
+- easier WOEID management (may be use Yahoo! GeoPlanet)
 - use DBUS instead Bonobo interface for Gnome panel (GNOME >= 2.32)
 - use PyGObject and GObject introspection
