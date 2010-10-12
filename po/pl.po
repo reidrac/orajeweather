@@ -201,3 +201,177 @@ msgstr "_O aplecie"
 #: ../OrajeApplet.py:852
 msgid "Details"
 msgstr "Szczegóły"
+
+#: ../OrajeApplet.server (this used by Gnome panel through bonobo)
+#, fuzzy
+msgid "Weather conditions viewer"
+msgstr "Nowe warunki"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "scattered snow showers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "heavy snow"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+#, fuzzy
+msgid "windy"
+msgstr "Wiatr:"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "cold"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "cloudy"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mostly cloudy"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "foggy"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "haze"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "smoky"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "blustery"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "snow showers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "isolated thundershowers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "partly cloudy"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "thundershowers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "scattered showers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "tropical storm"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "tornado"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "severe thunderstorms"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "hurricane"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed rain and snow"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "thunderstorms"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed snow and sleet"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed rain and sleet"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "drizzle"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "freezing drizzle"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "scattered thunderstorms"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "showers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "freezing rain"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "snow flurries"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "blowing snow"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "light snow showers"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "hail"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "snow"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "dust"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "sleet"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "clear"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "isolated thunderstorms"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "hot"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed rain and hail"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "fair"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "sunny"
+msgstr ""
+
+#: weather conditions, use gweather trans as base when possible
+msgid "not available"
+msgstr ""
