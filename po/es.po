@@ -2,7 +2,7 @@
 # Copyright (C) Juan J. Martinez <jjm@usebox.net>
 # This file is distributed under the same license as OrajeApplet package.
 # Juan J. Martínez <jjm@usebox.net>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: OrajeApplet 0.4\n"
@@ -210,168 +210,168 @@ msgstr "Visor de condiciones meteorológicas"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered snow showers"
-msgstr ""
+msgstr "chubascos de nieve dispersos"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "heavy snow"
-msgstr ""
+msgstr "nieve abundante"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "windy"
-msgstr ""
+msgstr "viento"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "cold"
-msgstr ""
+msgstr "frío"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "cloudy"
-msgstr ""
+msgstr "nublado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mostly cloudy"
-msgstr ""
+msgstr "bastante nublado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "foggy"
-msgstr ""
+msgstr "niebla"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "haze"
-msgstr ""
+msgstr "bruma"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "smoky"
-msgstr ""
+msgstr "humo"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "blustery"
-msgstr ""
+msgstr "borrascoso"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "snow showers"
-msgstr ""
+msgstr "chubascos de nieve"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "isolated thundershowers"
-msgstr ""
+msgstr "chubascos tormentosos aislados"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "partly cloudy"
-msgstr ""
+msgstr "parcialmente nublado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "thundershowers"
-msgstr ""
+msgstr "chubascos tormentosos"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered showers"
-msgstr ""
+msgstr "chubascos dispersos"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "tropical storm"
-msgstr ""
+msgstr "tormenta tropical"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "tornado"
-msgstr ""
+msgstr "tornado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "severe thunderstorms"
-msgstr ""
+msgstr "tormentas eléctricas importantes"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "hurricane"
-msgstr ""
+msgstr "huracán"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mixed rain and snow"
-msgstr ""
+msgstr "aguanieve "
 
 #: weather conditions, use gweather trans as base when possible
 msgid "thunderstorms"
-msgstr ""
+msgstr "tormenta eléctrica"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mixed snow and sleet"
-msgstr ""
+msgstr "nieve y aguanieve"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mixed rain and sleet"
-msgstr ""
+msgstr "lluvia y aguanieve"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "drizzle"
-msgstr ""
+msgstr "llovizna"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "freezing drizzle"
-msgstr ""
+msgstr "llovizna helada"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered thunderstorms"
-msgstr ""
+msgstr "tormentas aisladas"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "showers"
-msgstr ""
+msgstr "lluvia"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "freezing rain"
-msgstr ""
+msgstr "lluvia helada"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "snow flurries"
-msgstr ""
+msgstr "ráfagas de nieve"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "blowing snow"
-msgstr ""
+msgstr "nieve y viento"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "light snow showers"
-msgstr ""
+msgstr "nevada ligera"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "hail"
-msgstr ""
+msgstr "granizo"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "snow"
-msgstr ""
+msgstr "nieve"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "dust"
-msgstr ""
+msgstr "polvo"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "sleet"
-msgstr ""
+msgstr "aguanieve"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "clear"
-msgstr ""
+msgstr "despejado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "isolated thunderstorms"
-msgstr ""
+msgstr "tormentas aisladas"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "hot"
-msgstr ""
+msgstr "cálido"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mixed rain and hail"
-msgstr ""
+msgstr "nieve y granizo"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "fair"
-msgstr ""
+msgstr "buen tiempo"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "sunny"
-msgstr ""
+msgstr "soleado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "not available"
-msgstr ""
+msgstr "no disponible"
