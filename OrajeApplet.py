@@ -492,7 +492,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			)
 			self.label.set_tooltip_markup(tip)
 
-			if True or self.notify is not None and self.conf['notify'] and new:
+			if self.notify is not None and self.conf['notify'] and new:
 				logging.debug('Sending a notification of new coditions')
 
 				self.notify.Notify(self.PACKAGE, 0, 
