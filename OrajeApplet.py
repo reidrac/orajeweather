@@ -492,14 +492,12 @@ class OrajeApplet(gnomeapplet.Applet):
 			)
 			self.label.set_tooltip_markup(tip)
 
-			if self.notify is not None and self.conf['notify'] and new:
+			if True or self.notify is not None and self.conf['notify'] and new:
 				logging.debug('Sending a notification of new coditions')
 
-				# FIXME: the notification server must be able to find
-				# the icon -- currently we just get the icon name by
-				# removing the extension (the theme must be aware of this!)
 				self.notify.Notify(self.PACKAGE, 0, 
-					self.theme['status'][self.status][:-4],
+					'file://%s%s' % (self.theme['base'],
+						self.theme['status'][self.status]),
 					_('New conditions'), tip, '', '', -1)
 		else:
 			tip = '...'
