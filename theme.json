@@ -2,7 +2,7 @@
 	"base":"/usr/lib/OrajeApplet/",
 	"status":
 	{
-		"loading": "gnome-fs-loading-icon.svg",
+		"loading": "loading-icon.svg",
 		"clear-night": "weather-clear-night.svg",
 		"clear": "weather-clear.svg",
 		"clouds-night": "weather-few-clouds-night.svg",
