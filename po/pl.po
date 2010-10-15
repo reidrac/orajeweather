@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-09 18:17+0100\n"
-"PO-Revision-Date: 2010-10-13 00:52+0200\n"
+"PO-Revision-Date: 2010-10-13 21:21+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgstr "Przeglądarka warunków pogodowych"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered snow showers"
-msgstr ""
+msgstr "rozproszone opady śniegu"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "heavy snow"
@@ -240,11 +240,11 @@ msgstr "zamglenie"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "smoky"
-msgstr ""
+msgstr "dym"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "blustery"
-msgstr ""
+msgstr "wietrznie"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "snow showers"
@@ -252,7 +252,7 @@ msgstr "przelotne opady śniegu"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "isolated thundershowers"
-msgstr ""
+msgstr "oddzielone burze"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "partly cloudy"
@@ -264,19 +264,19 @@ msgstr "burzowe opady"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered showers"
-msgstr ""
+msgstr "rozproszone opady"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "tropical storm"
-msgstr ""
+msgstr "sztorm tropikalny"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "tornado"
-msgstr ""
+msgstr "tornado"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "severe thunderstorms"
-msgstr ""
+msgstr "poważne burze"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "hurricane"
@@ -292,11 +292,11 @@ msgstr "burze"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mixed snow and sleet"
-msgstr ""
+msgstr "śnieg i deszcz ze śniegiem"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "mixed rain and sleet"
-msgstr ""
+msgstr "deszcz i deszcz ze śniegiem"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "drizzle"
@@ -308,7 +308,7 @@ msgstr "marznąca mżawka"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "scattered thunderstorms"
-msgstr ""
+msgstr "rozproszone burze"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "showers"
@@ -320,7 +320,7 @@ msgstr "marznący deszcz"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "snow flurries"
-msgstr ""
+msgstr "śnieżyca"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "blowing snow"
@@ -344,7 +344,7 @@ msgstr "tumany kurzu"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "sleet"
-msgstr ""
+msgstr "deszcz ze śniegiem"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "clear"
@@ -352,7 +352,7 @@ msgstr "czyste niebo"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "isolated thunderstorms"
-msgstr ""
+msgstr "oddzielone burze"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "hot"
@@ -364,7 +364,7 @@ msgstr "grad ze śniegiem"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "fair"
-msgstr ""
+msgstr "ładna"
 
 #: weather conditions, use gweather trans as base when possible
 msgid "sunny"
