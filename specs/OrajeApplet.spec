@@ -48,7 +48,7 @@ rm -rf %{buildroot}
 %{_datadir}/icons/%{name}.svg
 %{_datadir}/gnome-2.0/ui/%{name}.xml
 %{_datadir}/%{name}
-%{_libdir}/bonobo/servers/%{name}.server
+/usr/lib/bonobo/servers/%{name}.server
 
 
 %changelog
