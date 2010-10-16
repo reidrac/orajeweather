@@ -18,7 +18,6 @@ Requires:	pygtk2 >= 2.16.0
 Requires:	gnome-python2
 Requires:	gnome-python2-applet
 BuildRequires:	python
-BuildArch:	noarch
 
 %description
 Oraje Applet is a Gnome applet to view Yahoo! Weather forecasts.
