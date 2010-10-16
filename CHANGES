@@ -1,10 +1,4 @@
-* Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.05-1
-- New: Support for Python <= 2.7
-
 * Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.04-1
-- New: 64 bits support (you may need to remove your old installed
-       files, including config file ~/.config/OrajeAppler.json
-	   before upgrading)
 - New: gettext support
 - New: Polish translation (complete), thanks to Piotr Drąg
 - New: Spanish translation (complete), thanks to Alejandra Puerto

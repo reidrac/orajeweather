@@ -3,16 +3,6 @@ from distutils import cmd
 from distutils.command.build import build as _build
 from distutils.command.install_data import install_data as _install_data
 
-try:
-	import sysconfig
-	_lib = sysconfig.get_path('stdlib').split('/')[2]
-except:
-	import platform
-	if platform.architecture()[0] == '64bits':
-		_lib = 'lib64'
-	else:
-		_lib = 'lib'
-
 __version__ = '0.5'
 
 import os
@@ -37,16 +27,6 @@ class build(_build):
 					print 'Compiling %s' % src
 					msgfmt.make(src, dest)
 
-		print 'Setup theme.json for %s' % _lib
-		theme_fd = open('theme.json', 'r')
-		theme = theme_fd.read()
-		theme_fd.close()
-
-		theme = theme.replace('/lib/', '/%s/' % _lib)
-		theme_fd = open('build/theme.json', 'w')
-		theme_fd.write(theme)
-		theme_fd.close()
-
 		_build.run(self)
 
 class install_data(_install_data):
@@ -57,9 +37,6 @@ class install_data(_install_data):
 			lang_file = os.path.join('build', 'locale',
 				lang, 'LC_MESSAGES', 'OrajeApplet.mo')
 			self.data_files.append((lang_dir, [lang_file]))
-
-		self.data_files.append(('%s/OrajeApplet/' % _lib,
-			['build/theme.json']))
 
 		_install_data.run(self)
 
@@ -72,10 +49,10 @@ setup(name='OrajeApplet',
 	license='http://www.gnu.org/licenses/gpl-3.0.html',
 	cmdclass={ 'build': build, 'install_data': install_data },
 	scripts=['OrajeApplet.py'],
-	data_files=[('%s/bonobo/servers/' % _lib, ['OrajeApplet.server']),
+	data_files=[('lib/bonobo/servers/', ['OrajeApplet.server']),
 		('share/gnome-2.0/ui/', ['OrajeApplet.xml']),
-		('%s/OrajeApplet/' % _lib,
-			['ui/prefs.ui', 'ui/details.ui',
+		('share/OrajeApplet/',
+			['theme.json', 'ui/prefs.ui', 'ui/details.ui',
 			'icons/loading-icon.svg',
 			'icons/weather-clear-night.svg',
 			'icons/weather-clear.svg',

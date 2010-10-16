@@ -64,16 +64,6 @@ import urllib2
 from datetime import datetime
 import locale
 
-try:
-	import sysconfig
-	_lib = sysconfig.get_path('stdlib').split('/')[2]
-except:
-	import platform
-	if platform.architecture()[0] == '64bits':
-		_lib = 'lib64'
-	else:
-		_lib = 'lib'
-
 __version__='0.5'
 
 class OrajeApplet(gnomeapplet.Applet):
@@ -396,7 +386,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			conf_fd = None
 			logging.warning('Failed to load %s, using defaults' % conf_file)
 			conf = dict(update='15', units = 'c', location = '32997',
-				theme = '%s/%s/OrajeApplet/theme.json' % (sys.prefix, _lib),
+				theme = '%s/share/OrajeApplet/theme.json' % sys.prefix,
 				notify = False)
 		
 		if conf_fd:
@@ -615,7 +605,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		logging.debug('Menu on_preferences')
 		ui = gtk.Builder()
 		ui.set_translation_domain(self.PACKAGE)
-		ui.add_from_file('%s/%s/OrajeApplet/prefs.ui' % (sys.prefix, _lib))
+		ui.add_from_file('%s/share/OrajeApplet/prefs.ui' % sys.prefix)
 		dialog = ui.get_object('Preferences')
 		dialog.set_title(self.PACKAGE + ' Preferences')
 
@@ -862,8 +852,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		logging.debug('Menu on_details')
 		ui = gtk.Builder()
 		ui.set_translation_domain(self.PACKAGE)
-		ui.add_from_file('%s/%s/OrajeApplet/details.ui' % 
-			(sys.prefix, _lib))
+		ui.add_from_file('%s/share/OrajeApplet/details.ui' % sys.prefix)
 		dialog = ui.get_object('Details')
 		dialog.set_title('%s %s' % (self.PACKAGE, _('Details')))
 

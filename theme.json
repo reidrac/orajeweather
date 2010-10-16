@@ -1,5 +1,5 @@
 {
-	"base":"/usr/lib/OrajeApplet/",
+	"base":"/usr/share/OrajeApplet/",
 	"status":
 	{
 		"loading": "loading-icon.svg",
