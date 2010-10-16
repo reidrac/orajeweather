@@ -1,3 +1,12 @@
+* Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.04-1
+- New: gettext support
+- New: Polish translation (complete), thanks to Piotr Drąg
+- New: Spanish translation (complete), thanks to Alejandra Puerto
+- New: Initial Galician translation, thanks to Ricardo González
+- New: Initial French translation, thanks to Alejandra Puerto
+- New: Initial Italian translation, thanks to Lorenzo Nerini
+- New: Included Tango icons (0.8.90)
+
 * Thu Oct 07 2010 Juan J. Martinez <jjm@usebox.net> 0.03-1
 - New: Notifications on conditions change
 - New: conditional HTTP requests
