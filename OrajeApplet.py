@@ -63,10 +63,16 @@ except:
 import urllib2
 from datetime import datetime
 import locale
-import sysconfig
-_lib = sysconfig.get_path('stdlib').split('/')[2]
 
-__version__='0.4'
+try:
+	import sysconfig
+	_lib = sysconfig.get_path('stdlib').split('/')[2]
+except:
+	import platform
+	if platform.architecture()[0] == '64bits':
+		_lib = 'lib64'
+
+__version__='0.5'
 
 class OrajeApplet(gnomeapplet.Applet):
 	"""Module that implements gnomeapplet.Applet.

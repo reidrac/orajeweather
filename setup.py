@@ -2,9 +2,16 @@ from distutils.core import setup
 from distutils import cmd
 from distutils.command.build import build as _build
 from distutils.command.install_data import install_data as _install_data
-import sysconfig
 
-__version__ = '0.4'
+try:
+	import sysconfig
+	_lib = sysconfig.get_path('stdlib').split('/')[2]
+except:
+	import platform
+	if platform.architecture()[0] == '64bits':
+		_lib = 'lib64'
+
+__version__ = '0.5'
 
 import os
 try:
@@ -53,8 +60,6 @@ class install_data(_install_data):
 			['build/theme.json']))
 
 		_install_data.run(self)
-
-_lib = sysconfig.get_path('stdlib').split('/')[2]
 
 setup(name='OrajeApplet',
 	version=__version__,
