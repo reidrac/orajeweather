@@ -5,7 +5,6 @@
 Name:		OrajeApplet
 Version:	%{basever}
 Release:	1%{?dist}
-Epoch:		1
 Summary:	A Gnome applet to view Yahoo! Weather forecasts
 Group:		User Interface/Desktops
 License:	GPLv2+
@@ -18,6 +17,7 @@ Requires:	dbus-python >= 0.83.0
 Requires:	pygtk2 >= 2.16.0
 Requires:	gnome-python2
 Requires:	gnome-python2-applet
+BuildRequires:	python
 BuildArch:	noarch
 
 %description
