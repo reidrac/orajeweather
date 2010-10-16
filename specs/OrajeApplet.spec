@@ -52,6 +52,6 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Sun Oct 10 2010 Juan J. Martinez <jjm@usebox.net> 0.4-1
+* Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.4-1
 - initial package build
 
