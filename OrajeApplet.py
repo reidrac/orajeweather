@@ -71,6 +71,8 @@ except:
 	import platform
 	if platform.architecture()[0] == '64bits':
 		_lib = 'lib64'
+	else:
+		_lib = 'lib'
 
 __version__='0.5'
 
