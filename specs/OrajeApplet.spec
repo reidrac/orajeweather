@@ -1,6 +1,6 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
-%global basever 0.5
+%global basever 0.4
 
 Name:		OrajeApplet
 Version:	%{basever}
@@ -47,11 +47,11 @@ rm -rf %{buildroot}
 %{_datadir}/doc/%{name}-%{basever}
 %{_datadir}/icons/%{name}.svg
 %{_datadir}/gnome-2.0/ui/%{name}.xml
+%{_datadir}/%{name}
 %{_libdir}/bonobo/servers/%{name}.server
-%{_libdir}/%{name}
 
 
 %changelog
-* Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.5-1
+* Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.4-1
 - initial package build
 
