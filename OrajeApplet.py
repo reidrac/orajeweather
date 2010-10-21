@@ -123,8 +123,8 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.size = self.applet.get_size()
 		self.label = gtk.Label()
 
-		# show something, in case the RSS it's slow
-		self.set_status('loading')
+		# show something, in case we're disconnected
+		self.set_status('3200')
 
 		box = gtk.HBox()
 		box.add(self.image)
@@ -256,7 +256,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			self.weather = self.dom_to_weather(minidom.parse(rss))
 			logging.debug(self.weather)
 
-			self.set_status(self.theme['conditions'][self.weather['condition']['code']]['status'],
+			self.set_status(self.weather['condition']['code'],
 				_(self.theme['conditions'][self.weather['condition']['code']]['desc']).title())
 		except Exception as e:
 			logging.error('Error setting new status: %s' % e)
@@ -454,6 +454,13 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		return theme
 
+	@property
+	def status_str(self):
+		"""Translate status code into status string.
+		"""
+
+		return self.theme['conditions'][self.status]['status']
+
 
 	def set_status(self, status, desc=None, force=False):
 		"""Sets the status checking it's supported by current theme.
@@ -463,7 +470,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		new = False
 
-		if status in self.theme['status']:
+		if status in self.theme['conditions']:
 			if status != self.status or force:
 				self.status = status
 				logging.debug('Status changed')
@@ -481,7 +488,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 			# prettify
 			if not desc:
-				desc = self.status
+				desc = self.theme['conditions'][self.status]['desc']
 			desc = desc.title()
 
 			tip = '%s (%s)\n<b>%s</b>,%s' % (
@@ -497,7 +504,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 				self.notify.Notify(self.PACKAGE, 0, 
 					'file://%s%s' % (self.theme['base'],
-						self.theme['status'][self.status]),
+						self.theme['status'][self.status_str]),
 					_('New conditions'), tip, '', '', -1)
 		else:
 			tip = '...'
@@ -508,7 +515,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		if new:
 			self.image = self.load_image('%s%s' % 
-				(self.theme['base'], self.theme['status'][self.status]),
+				(self.theme['base'], self.theme['status'][self.status_str]),
 					self.size, prev)
 
 		self.image.set_tooltip_markup(tip)
@@ -684,7 +691,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 			self.weather = weather
 			self.conf['location'] = woeid
-			self.set_status(self.theme['conditions'][self.weather['condition']['code']]['status'],
+			self.set_status(self.weather['condition']['code'],
 				_(self.theme['conditions'][self.weather['condition']['code']]['desc']).title())
 		elif self.weather is not None:
 			# in case there was a previous error, don't confuse
@@ -781,7 +788,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		image = ui.get_object('image')
 		self.load_image('%s%s' % 
-			(self.theme['base'], self.theme['status'][self.status]),
+			(self.theme['base'], self.theme['status'][self.status_str]),
 				96, image)
 
 		if self.weather is None:
