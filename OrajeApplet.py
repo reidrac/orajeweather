@@ -155,6 +155,8 @@ class OrajeApplet(gnomeapplet.Applet):
 
 			try:
 				self.sebus = dbus.SessionBus()
+				# we ask for the interface just to check if we have
+				# notifications available
 				self.notify = dbus.Interface(self.sebus.get_object(
 					'org.freedesktop.Notifications',
 					'/org/freedesktop/Notifications'),
@@ -500,9 +502,16 @@ class OrajeApplet(gnomeapplet.Applet):
 			)
 			self.label.set_tooltip_markup(tip)
 
-			if self.notify is not None and self.conf['notify'] and new:
+			if self.notify is not None and self.conf['notify']: # and new:
 				logging.debug('Sending a notification of new coditions')
 
+				# the object can be invalid after some time, so ask for a
+				# new interface
+				import dbus
+				self.notify = dbus.Interface(self.sebus.get_object(
+					'org.freedesktop.Notifications',
+					'/org/freedesktop/Notifications'),
+					'org.freedesktop.Notifications')
 				self.notify.Notify(self.PACKAGE, 0, 
 					'file://%s%s' % (self.theme['base'],
 						self.theme['status'][self.status_str]),
