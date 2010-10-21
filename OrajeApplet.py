@@ -127,6 +127,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		self.set_status('3200')
 
 		box = gtk.HBox()
+		self.image = gtk.Image()
 		box.add(self.image)
 		box.add(self.label)
 		self.applet.add(box)
