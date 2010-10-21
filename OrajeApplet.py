@@ -228,10 +228,10 @@ class OrajeApplet(gnomeapplet.Applet):
 						update_rss_callback, self)
 		else:
 			logging.debug('Disconnected')
+			self.connection = False
 			if self.connection:
 				gobject.source_remove(self.timeout)
 				self.timeout = None
-				self.connection = False
 
 
 	def update_rss(self):
