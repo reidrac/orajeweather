@@ -1,3 +1,7 @@
+* Wed Nov 3 2010 Juan J. Martinez <jjm@usebox.net> 0.05-1
+- Fix: track day/night conditions correctly
+- Fix: notification fixes on Gnome 2.32.0
+
 * Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.04-1
 - New: gettext support
 - New: Polish translation (complete), thanks to Piotr Drąg

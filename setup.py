@@ -3,7 +3,7 @@ from distutils import cmd
 from distutils.command.build import build as _build
 from distutils.command.install_data import install_data as _install_data
 
-__version__ = '0.4'
+__version__ = '0.5'
 
 import os
 try:
