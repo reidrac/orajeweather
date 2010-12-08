@@ -292,7 +292,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			logging.error('Error downloading the RSS: %s' % error)
 			return None
 
-		locale.setlocale(locale.LC_TIME, 'en_US')
+		locale.setlocale(locale.LC_TIME, 'C')
 		self.last_fetch = datetime.utcnow().strftime('%a, %d %b %Y %T GMT')
 		locale.setlocale(locale.LC_TIME, self.lc_time)
 		return rss
@@ -819,7 +819,7 @@ class OrajeApplet(gnomeapplet.Applet):
 
 		date = ui.get_object('date')
 		datestr = self.weather['condition']['date']
-		locale.setlocale(locale.LC_TIME, 'en_US')
+		locale.setlocale(locale.LC_TIME, 'C')
 		datestr = datetime.strptime(datestr, '%a, %d %b %Y %I:%M %p %Z')
 		locale.setlocale(locale.LC_TIME, self.lc_time)
 		datestr = datetime.strftime(datestr, '%a %d %b, %H:%M')
