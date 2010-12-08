@@ -483,7 +483,7 @@ class OrajeApplet(gnomeapplet.Applet):
 			return
 
 		if self.weather is not None:
-			temp = ' %s<sup><small>o</small></sup>%c' % (
+			temp = ' %s°%c' % (
 				self.weather['condition']['temp'],
 				self.weather['units']['temperature']
 			)
@@ -808,7 +808,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		conditions = ui.get_object('conditions')
 		conditions.set_markup(_(self.theme['conditions'][self.weather['condition']['code']]['desc']).title())
 		temperature = ui.get_object('temperature')
-		temperature.set_markup('<big><b>%s<sup><small>o</small></sup>%c</b></big>' % (
+		temperature.set_markup('<big><b>%s°%c</b></big>' % (
 				self.weather['condition']['temp'],
 				self.weather['units']['temperature']))
 
@@ -826,7 +826,7 @@ class OrajeApplet(gnomeapplet.Applet):
 		date.set_text(datestr)
 
 		chill = ui.get_object('chill')
-		chill.set_markup('%s<sup><small>o</small></sup>%c' % (
+		chill.set_markup('%s°%c' % (
 			self.weather['wind']['chill'],
 			self.weather['units']['temperature']))
 
