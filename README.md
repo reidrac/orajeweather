@@ -17,7 +17,7 @@ This package requires:
  - Python >= 2.6
  - PyGTK2 >= 2.16.0
  - Gnome python bindings (including applet support)
- - Gnome
+ - Gnome 2 (also known as "Classic Gnome").
 
 Optionally dbus is used to support NetworkManager and notifications.
 
