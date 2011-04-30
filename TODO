@@ -1,3 +1,5 @@
-- easier WOEID management (may be use Yahoo! GeoPlanet)
-- use DBUS instead Bonobo interface for Gnome panel (GNOME >= 2.32)
+- easier WOEID management (may be using Yahoo! GeoPlanet)
 - use PyGObject and GObject introspection
+- Gnome 3 support
+- Ubuntu Unity support
+
