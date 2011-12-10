@@ -1,0 +1,381 @@
+#  Oraje Applet
+# Copyright (C) Juan J. Martinez <jjm@usebox.net>
+# This file is distributed under the same license as OrajeApplet package.
+# 
+# Translators:
+# Сергій Гаврилов <sergiovana@bigmir.net>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: Oraje Applet\n"
+"Report-Msgid-Bugs-To: http://github.com/reidrac/orajeweather/issues\n"
+"POT-Creation-Date: 2010-10-09 18:17+0100\n"
+"PO-Revision-Date: 2011-04-24 07:26+0000\n"
+"Last-Translator: Sergiy_Gavrylov <sergiovana@bigmir.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk_UA\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: ../OrajeApplet.py:298 (wind direction)
+msgid "N"
+msgstr "Пн."
+
+#: ../OrajeApplet.py:299 (wind direction)
+msgid "NNE"
+msgstr "Пн. Пн.-сх."
+
+#: ../OrajeApplet.py:300 (wind direction)
+msgid "NE"
+msgstr "Пн.-сх."
+
+#: ../OrajeApplet.py:301 (wind direction)
+msgid "ENE"
+msgstr "Сх. Пн.-сх."
+
+#: ../OrajeApplet.py:302 (wind direction)
+msgid "E"
+msgstr "Сх."
+
+#: ../OrajeApplet.py:303 (wind direction)
+msgid "ESE"
+msgstr "Сх. Пд.-сх."
+
+#: ../OrajeApplet.py:304 (wind direction)
+msgid "SE"
+msgstr "Пд.-сх."
+
+#: ../OrajeApplet.py:305 (wind direction)
+msgid "SSE"
+msgstr "Пд. Пд.-сх."
+
+#: ../OrajeApplet.py:306 (wind direction)
+msgid "S"
+msgstr "Пд."
+
+#: ../OrajeApplet.py:307 (wind direction)
+msgid "SSW"
+msgstr "Пд. Пд.-зх."
+
+#: ../OrajeApplet.py:308 (wind direction)
+msgid "SW"
+msgstr "Пд.-зх."
+
+#: ../OrajeApplet.py:309 (wind direction)
+msgid "WSW"
+msgstr "Зх. Пд.-зх."
+
+#: ../OrajeApplet.py:310 (wind direction)
+msgid "W"
+msgstr "Зх."
+
+#: ../OrajeApplet.py:311 (wind direction)
+msgid "WNW"
+msgstr "Зх. Пн.-зх."
+
+#: ../OrajeApplet.py:312 (wind direction)
+msgid "NW"
+msgstr "Пн-зх"
+
+#: ../OrajeApplet.py:313 (wind direction)
+msgid "NNW"
+msgstr "Пн. Пн.-зх."
+
+#: ../OrajeApplet.py:501
+msgid "New conditions"
+msgstr "Нові умови"
+
+#: ../OrajeApplet.py:629 ../OrajeApplet.py:725
+msgid "Celsius"
+msgstr "C°"
+
+#: ../OrajeApplet.py:630
+msgid "Fahrenheit"
+msgstr "F°"
+
+#: ../OrajeApplet.py:665
+msgid "<small><i>Checking...</i></small>"
+msgstr "<small><i>Перевірка...</i></small>"
+
+#: ../OrajeApplet.py:670
+msgid "<small><b>Error retrieving location</b></small>"
+msgstr "<small><b>Помилка отримання адреси</b></small>"
+
+#: ../OrajeApplet.py:677
+msgid "<small><b>Error processing the location</b></small>"
+msgstr "<small><b>Помилка обробки адреси</b></small>"
+
+#: ../OrajeApplet.py:763
+msgid "Another weather applet for Gnome"
+msgstr "Ще один аплет погоди для Gnome"
+
+#: ../ui/details.ui:64
+msgid "Location:"
+msgstr "Адреса:"
+
+#: ../ui/details.ui:72
+msgid "Last updated:"
+msgstr "Останнє оновлення:"
+
+#: ../ui/details.ui:84
+msgid "Feels like:"
+msgstr "Відчувається:"
+
+#: ../ui/details.ui:96
+msgid "Barometer:"
+msgstr "Тиск:"
+
+#: ../ui/details.ui:108
+msgid "Humidity:"
+msgstr "Вологість:"
+
+#: ../ui/details.ui:120
+msgid "Visibility:"
+msgstr "Видимість:"
+
+#: ../ui/details.ui:223
+msgid "Conditions:"
+msgstr "Умови:"
+
+#: ../ui/details.ui:235
+msgid "Wind:"
+msgstr "Вітер:"
+
+#: ../ui/details.ui:260
+msgid "Sunrise:"
+msgstr "Схід сонця:"
+
+#: ../ui/details.ui:285
+msgid "Sunset:"
+msgstr "Захід сонця:"
+
+#: ../ui/prefs.ui:65
+msgid "<small><i>City (Country)</i></small>"
+msgstr "<small><i>Місто (Країна)</i></small>"
+
+#: ../ui/prefs.ui:92
+msgid ""
+"<small>Browse Yahoo! Weather and find your location.\n"
+"The <i>WOEID</i> it's the number ending the URL of the forecast.</small>"
+msgstr ""
+"<small>Перейдіть до «Yahoo! Weather» і знайдіть свою адресу.\n"
+"<i>WOEID</i> —це число на кінці адреси прогнозу для вашого міста.</small>"
+
+#: ../ui/prefs.ui:114
+msgid "<b>Location</b>"
+msgstr "<b>Адреса:</b>"
+
+#: ../ui/prefs.ui:142
+msgid "Update interval:"
+msgstr "Інтервал оновлення:"
+
+#: ../ui/prefs.ui:165
+msgid "minutes"
+msgstr "хв."
+
+#: ../ui/prefs.ui:182
+msgid "Units:"
+msgstr "Одиниці:"
+
+#: ../ui/prefs.ui:215
+msgid "Notify on change"
+msgstr "Повідомляти про зміни"
+
+#: ../ui/prefs.ui:235
+msgid "<b>Viewer</b>"
+msgstr "<b>Переглядач</b>"
+
+#: ../OrajeApplet.xml:4
+msgid "_Details"
+msgstr "По_дробиці:"
+
+#: ../OrajeApplet.xml:5
+msgid "_Refresh"
+msgstr "_Оновити"
+
+#: ../OrajeApplet.xml:7
+msgid "_Preferences"
+msgstr "_Параметри"
+
+#: ../OrajeApplet.xml:8
+msgid "_About"
+msgstr "Про _аплет"
+
+#: ../OrajeApplet.py:852
+msgid "Details"
+msgstr "Подробиці"
+
+#: ../OrajeApplet.server (this used by Gnome panel through bonobo)
+msgid "Weather conditions viewer"
+msgstr "Переглядач прогнозу погоди"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "scattered snow showers"
+msgstr "подекуди снігопади"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "heavy snow"
+msgstr "сильний сніг"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "windy"
+msgstr "вітряно"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "cold"
+msgstr "холодно"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "cloudy"
+msgstr "хмарно"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mostly cloudy"
+msgstr "почасти хмарно"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "foggy"
+msgstr "туман"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "haze"
+msgstr "імла"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "smoky"
+msgstr "серпанок"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "blustery"
+msgstr "сильний вітер"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "snow showers"
+msgstr "мокрий сніг"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "isolated thundershowers"
+msgstr "подекуди грозові зливи"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "partly cloudy"
+msgstr "мінлива хмарність"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "thundershowers"
+msgstr "зливи з грозами"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "scattered showers"
+msgstr "подекуди зливи"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "tropical storm"
+msgstr "тропічний шторм"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "tornado"
+msgstr "торнадо"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "severe thunderstorms"
+msgstr "сильні грози"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "hurricane"
+msgstr "ураган"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed rain and snow"
+msgstr "дощ зі снігом"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "thunderstorms"
+msgstr "грози"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed snow and sleet"
+msgstr "дощ з крупою"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed rain and sleet"
+msgstr "сльота"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "drizzle"
+msgstr "мряка"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "freezing drizzle"
+msgstr "паморозь"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "scattered thunderstorms"
+msgstr "розсіяні грози"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "showers"
+msgstr "дощі"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "freezing rain"
+msgstr "дощ з градом"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "snow flurries"
+msgstr "завірюха"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "blowing snow"
+msgstr "сильний сніг"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "light snow showers"
+msgstr "помірний сніг"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "hail"
+msgstr "град"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "snow"
+msgstr "сніг"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "dust"
+msgstr "хмари пилу"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "sleet"
+msgstr "крупа"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "clear"
+msgstr "ясно"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "isolated thunderstorms"
+msgstr "окремі грози"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "hot"
+msgstr "жарко"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "mixed rain and hail"
+msgstr "дощ з градом"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "fair"
+msgstr "гарна погода"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "sunny"
+msgstr "сонячно"
+
+#: weather conditions, use gweather trans as base when possible
+msgid "not available"
+msgstr "недоступно"
+
+
