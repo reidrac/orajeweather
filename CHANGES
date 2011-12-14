@@ -1,3 +1,11 @@
+* Wed Dec 14 2011 Juan J. Martinez <jjm@usebox.net> 0.05.1-1
+- New: incomplete Catalan translation thanks to el_libre como el chaval
+- New: Ukranian translation (complete), thanks to Сергій Гаврилов
+- Fix: minor tweaks
+
+This is the final version of the project because Gnome 3 droppped
+panel applet support.
+
 * Wed Nov 3 2010 Juan J. Martinez <jjm@usebox.net> 0.05-1
 - Fix: track day/night conditions correctly
 - Fix: notification fixes on Gnome 2.32.0

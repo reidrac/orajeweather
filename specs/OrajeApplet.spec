@@ -1,6 +1,6 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
-%global basever 0.5
+%global basever 0.5.1
 
 Name:		OrajeApplet
 Version:	%{basever}
@@ -52,6 +52,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Dec 14 2011 Juan J. Martinez <jjm@usebox.net> 0.5.1-1
+- upstream update
 * Wed Nov 3 2010 Juan J. Martinez <jjm@usebox.net> 0.5-1
 - upstream update
 * Sat Oct 16 2010 Juan J. Martinez <jjm@usebox.net> 0.4-1
